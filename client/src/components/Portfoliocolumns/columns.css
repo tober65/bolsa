@@ -1,0 +1,28 @@
+.stocks {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.userStocks{
+    color: white;
+    font-size: 24px;
+    
+}
+
+.userShares{
+    font-weight: bold;
+    color: white;
+    font-size: 22px;
+}
+
+.userSharePrice {
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.test {
+    background-color: #484D52;
+    border-radius: 25px;
+}
