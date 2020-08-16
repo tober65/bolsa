@@ -37,6 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
     "mongoose": "^5.9.13",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-bootstrap": "^1.3.0"
   }
 }
