@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const models = require("../models");
 const moment = require("moment");
+const axios = require("axios");
 
 router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
   models.Stock.findOneAndUpdate(
@@ -30,12 +31,14 @@ router.get("/api/userstocks/:username", (req, res) => {
 router.get("/api/stocks/:symbol", (req, res) => {
   const searchUrl =
     "https://finnhub.io/api/v1/quote?symbol=" +
-    req.params.symbol +
+    req.params.symbol.toUpperCase() +
     "&token=" +
     process.env.FINN_API_KEY;
 
+    console.log(searchUrl);
+
   axios.get(searchUrl).then((response) => {
-      res.json(response);
+      res.json(response.data);
   });
 });
 
@@ -46,19 +49,19 @@ router.get("/api/stocks/", (req, res) => {
       process.env.FINN_API_KEY;
   
     axios.get(searchUrl).then((response) => {
-        res.json(response);
+        res.json(response.data);
     });
   });
 
 router.get("/api/company/:symbol", (req, res) => {
     const searchUrl =
       "https://finnhub.io/api/v1/stock/profile2?symbol=" +
-      req.params.symbol +
+      req.params.symbol.toUpperCase() +
       "&token=" +
       process.env.FINN_API_KEY;
   
     axios.get(searchUrl).then((response) => {
-        res.json(response);
+        res.json(response.data);
     });
   });
 
@@ -68,14 +71,14 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
     
     const searchUrl =
       "https://finnhub.io/api/v1/company-news?symbol=" +
-      req.params.symbol +
+      req.params.symbol.toUpperCase() +
       "&token=" +
       process.env.FINN_API_KEY +
       "&from=" + fromString +
       "&to=" + toString;
 
     axios.get(searchUrl).then((response) => {
-        res.json(response);
+        res.json(response.data);
     });
   });
 

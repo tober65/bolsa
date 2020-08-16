@@ -15,3 +15,7 @@ const UserSchema = new Schema({
     required: true,
   },
 });
+
+const Stock = mongoose.model("Stock", UserSchema);
+
+module.exports = Stock;
