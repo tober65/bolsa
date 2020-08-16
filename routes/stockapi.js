@@ -39,6 +39,18 @@ router.get("/api/stocks/:symbol", (req, res) => {
   });
 });
 
+router.get("/api/company/:symbol", (req, res) => {
+    const searchUrl =
+      "https://finnhub.io/api/v1/stock/profile2?symbol=" +
+      req.params.symbol +
+      "&token=" +
+      process.env.FINN_API_KEY;
+  
+    axios.get(searchUrl).then((response) => {
+        res.json(response);
+    });
+  });
+
 router.get("/api/stocksnews/:symbol", (req, res) => {
     const toString = moment().format("YYYY-MM-DD");
     const fromString = moment().subtract(1, "months").format("YYYY-MM-DD");
@@ -57,3 +69,4 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
   });
 
   module.exports = router;
+  
