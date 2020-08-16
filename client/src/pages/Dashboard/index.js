@@ -16,7 +16,7 @@ function Dashboard() {
   useEffect(() => {
     API.getStockSymbols().then((response) => {
       console.log(response);
-    })
+    }).catch((err) => console.log('Error!', err));
   }, []);
 
   return (

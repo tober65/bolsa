@@ -13,10 +13,6 @@ export default {
   getStockSymbols: () => {
     return axios.get(
       "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bsq5rugfkcbcavsjc2vg",
-      {headers: { 
-        'Access-Control-Allow-Origin' : '*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }},
     );
   }
 };
