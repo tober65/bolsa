@@ -3,8 +3,8 @@ import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
-import ChartsPage from "../UserComponents/UserChart";
-import PortfolioValue from "../PortfolioComponents/UserPortfolioValue";
+import UserChart from "../UserComponents/UserChart";
+import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
@@ -23,7 +23,7 @@ function PortfolioColumns(props) {
                         <UserPortfolioValue/>
                     </h3>
                     <div className="mt-4 text-center">
-                        <ChartsPage></ChartsPage>
+                        <UserChart/>
                     </div>
                 </Col>
                 <Col sm={6} md={7} lg={8} xl={7}>
