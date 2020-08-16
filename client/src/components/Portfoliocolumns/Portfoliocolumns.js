@@ -3,11 +3,11 @@ import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
-import ChartsPage from "../Userchart/Userchart";
+import ChartsPage from "../UserComponents/UserChart";
 import PortfolioValue from "../PortfolioValue";
-import UserStocks from "../UserStocks";
-import UserShares from "../UserShares";
-import UserSharesPrice from "../UserSharesPrice";
+import UserStocks from "../UserComponents/UserStocks";
+import UserShares from "../UserComponents/UserShares";
+import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
 
 function PortfolioColumns(props) {
