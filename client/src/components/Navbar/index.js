@@ -11,7 +11,7 @@ function Navbar() {
 
   if (isLoggedIn) {
     links.push(
-      <NavLink key="profile" className="nav-item" to="/dashboard">
+      <NavLink key="dashboard" className="nav-item" to="/dashboard">
         Dashboard
       </NavLink>
     );
@@ -21,7 +21,7 @@ function Navbar() {
       </NavLink>
     );
     links.push(
-      <span key="lougout" className="nav-item" onClick={logout}>
+      <span key="logout" className="nav-item" onClick={logout}>
         Logout
       </span>
     );
