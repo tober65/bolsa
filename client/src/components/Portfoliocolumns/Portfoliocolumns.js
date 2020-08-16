@@ -14,7 +14,7 @@ function PortfolioColumns(props) {
                 <Col sm={6} md={5} lg={4} xl={5}>
                     <h2 className="mt-3 text-center">
                         Your Portfolio
-            </h2>
+                    </h2>
                     <h3 className="mt-3 text-center">
                     $2,078.87
                     </h3>

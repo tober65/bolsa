@@ -38,6 +38,7 @@
     "moment": "^2.27.0",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
+    "react-stockcharts": "^0.7.8",
     "react-bootstrap": "^1.3.0"
   }
 }
