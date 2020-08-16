@@ -1,14 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import logo from "./logo.svg";
-import "./home.css";
+import "./dashboard.css";
 import { useAuth } from "../../utils/auth";
 
-function Home() {
+function Dashboard() {
   const { user, logout } = useAuth();
   const history = useHistory();
 
-  const goToEditProfile = () => history.push("/profile");
+  const goToEditProfile = () => history.push("/portfolio");
 
   return (
     <div className="Home">
@@ -26,4 +26,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;
