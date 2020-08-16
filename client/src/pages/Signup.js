@@ -53,7 +53,7 @@ function Signup() {
         <InputGroup
           id="username"
           labelText="Username"
-          placeholder="WinterIsComing"
+          placeholder="Username"
           name="username"
           type="text"
           onChange={handleChange}
@@ -61,7 +61,7 @@ function Signup() {
         <InputGroup
           id="email"
           labelText="Email"
-          placeholder="jon.snow@email.com"
+          placeholder="name@email.com"
           name="email"
           type="email"
           onChange={handleChange}
@@ -69,7 +69,7 @@ function Signup() {
         <InputGroup
           id="pwd"
           labelText="Password"
-          placeholder="p@ssw0Rd!"
+          placeholder="Password"
           name="password"
           type="password"
           onChange={handleChange}

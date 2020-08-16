@@ -5,9 +5,9 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { AuthProvider } from "./utils/auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile";
+import Portfolio from "./pages/Portfolio";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Navbar />
           <Switch>
             <ProtectedRoute exact path="/">
-              <Home />
+              <Dashboard />
             </ProtectedRoute>
             <Route exact path="/login">
               <Login />
@@ -26,8 +26,8 @@ function App() {
             <Route exact path="/signup">
               <Signup />
             </Route>
-            <ProtectedRoute exact path="/profile">
-              <Profile />
+            <ProtectedRoute exact path="/portfolio">
+              <Portfolio />
             </ProtectedRoute>
           </Switch>
         </div>
