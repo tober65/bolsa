@@ -1,0 +1,26 @@
+.MuiInputLabel-outlined {
+  color: #ffffff !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+}
+
+.MuiAutocomplete-listbox {
+  background: white !important;
+}
+
+.MuiAutocomplete-input {
+  color: white !important;
+  background: white !important;
+}
+
+.MuiAutocomplete-inputRoot {
+  color: white !important;
+  background: white !important;
+}
+
+.MuiAutocomplete-root {
+  color: white !important;
+  background: white !important;
+}
