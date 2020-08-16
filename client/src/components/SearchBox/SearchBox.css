@@ -24,3 +24,8 @@
   color: white !important;
   background: white !important;
 }
+
+
+.MuiAutocomplete-inputRoot {
+  color: white !important;
+}
