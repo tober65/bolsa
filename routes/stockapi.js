@@ -28,6 +28,17 @@ router.get("/api/userstocks/:username", (req, res) => {
   });
 });
 
+router.get("/api/symbols", (req, res) => {
+  const searchUrl =
+    "https://finnhub.io/api/v1/stock/symbol?exchange=US" +
+    "&token=" +
+    process.env.FINN_API_KEY;
+
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
+  });
+});
+
 router.get("/api/stocks/:symbol", (req, res) => {
   const searchUrl =
     "https://finnhub.io/api/v1/quote?symbol=" +
@@ -81,5 +92,6 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
         res.json(response.data);
     });
   });
+});
 
   module.exports = router;
