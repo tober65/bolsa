@@ -46,52 +46,53 @@ router.get("/api/stocks/:symbol", (req, res) => {
     "&token=" +
     process.env.FINN_API_KEY;
 
-    console.log(searchUrl);
+  console.log(searchUrl);
 
   axios.get(searchUrl).then((response) => {
-      res.json(response.data);
+    res.json(response.data);
   });
 });
 
 // Get a list of all supported stock symbols
 router.get("/api/stocks/", (req, res) => {
-    const searchUrl =
-      "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=" +
-      process.env.FINN_API_KEY;
-  
-    axios.get(searchUrl).then((response) => {
-        res.json(response.data);
-    });
-  });
+  const searchUrl =
+    "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=" +
+    process.env.FINN_API_KEY;
 
-router.get("/api/company/:symbol", (req, res) => {
-    const searchUrl =
-      "https://finnhub.io/api/v1/stock/profile2?symbol=" +
-      req.params.symbol.toUpperCase() +
-      "&token=" +
-      process.env.FINN_API_KEY;
-  
-    axios.get(searchUrl).then((response) => {
-        res.json(response.data);
-    });
-  });
-
-router.get("/api/stocksnews/:symbol", (req, res) => {
-    const toString = moment().format("YYYY-MM-DD");
-    const fromString = moment().subtract(1, "months").format("YYYY-MM-DD");
-    
-    const searchUrl =
-      "https://finnhub.io/api/v1/company-news?symbol=" +
-      req.params.symbol.toUpperCase() +
-      "&token=" +
-      process.env.FINN_API_KEY +
-      "&from=" + fromString +
-      "&to=" + toString;
-
-    axios.get(searchUrl).then((response) => {
-        res.json(response.data);
-    });
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
   });
 });
 
-  module.exports = router;
+router.get("/api/company/:symbol", (req, res) => {
+  const searchUrl =
+    "https://finnhub.io/api/v1/stock/profile2?symbol=" +
+    req.params.symbol.toUpperCase() +
+    "&token=" +
+    process.env.FINN_API_KEY;
+
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
+  });
+});
+
+router.get("/api/stocksnews/:symbol", (req, res) => {
+  const toString = moment().format("YYYY-MM-DD");
+  const fromString = moment().subtract(1, "months").format("YYYY-MM-DD");
+
+  const searchUrl =
+    "https://finnhub.io/api/v1/company-news?symbol=" +
+    req.params.symbol.toUpperCase() +
+    "&token=" +
+    process.env.FINN_API_KEY +
+    "&from=" +
+    fromString +
+    "&to=" +
+    toString;
+
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
+  });
+});
+
+module.exports = router;
