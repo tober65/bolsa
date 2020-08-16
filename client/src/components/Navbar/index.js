@@ -7,16 +7,16 @@ import "./Navbar.css";
 
 function Navbar() {
   const { isLoggedIn, logout } = useAuth();
-  const links = [<BrandLink key="/" to="/" />];
+  const links = [<BrandLink key="/" to="/brand" />];
 
   if (isLoggedIn) {
     links.push(
-      <NavLink key="dashboard" className="nav-item" to="/dashboard">
+      <NavLink key="dashboard" exact className="nav-item" to="/">
         Dashboard
       </NavLink>
     );
     links.push(
-      <NavLink key="profile" className="nav-item" to="/profile">
+      <NavLink key="profile" className="nav-item" to="/portfolio">
         Profile
       </NavLink>
     );

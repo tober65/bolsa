@@ -4,7 +4,7 @@ import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 
-function Profile() {
+function Portfolio() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const { user } = useAuth();
@@ -26,4 +26,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Portfolio;
