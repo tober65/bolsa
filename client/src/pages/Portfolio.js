@@ -16,14 +16,16 @@ function Portfolio() {
     });
   }, [user]);
 
-  return (
+  return (<div>
+    <Navbar>
+    </Navbar>
     <Container>
-      <h1>On the profile page!</h1>
-      <p>Username: {username}</p>
-      <p>Email: {email}</p>
-      <Link to="/">Go home</Link>
+      <Row>
+        <PortfolioColumns></PortfolioColumns>
+      </Row>
     </Container>
-  );
-}
+  </div>
+  )
+};
 
 export default Portfolio;
