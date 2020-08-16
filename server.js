@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
+const cors = require("cors");
 const initDb = require("./config/initDb");
 const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
@@ -15,6 +16,8 @@ const PORT = process.env.PORT || 3001;
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
+
+app.use(cors());
 
 // Setting up express to use json and set it to req.body
 app.use(express.json());

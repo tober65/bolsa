@@ -11,6 +11,8 @@ export default {
   //get all symbols
   //TODO: allow exchange changes
   getStockSymbols: () => {
-    return axios.get("/stock/symbol?exchange=US");
+    return axios.get(
+      "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bsq5rugfkcbcavsjc2vg",
+    );
   }
 };
