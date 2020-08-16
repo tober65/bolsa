@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PortfolioColumns from "../components/Portfoliocolumns";
 import API from "./../utils/API";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
