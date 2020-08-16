@@ -1,3 +1,6 @@
+*{
+  background-color: #16162A;
+}
 .LoginForm {
   display: flex;
   flex-direction: column;
@@ -5,8 +8,9 @@
 
 .LoginForm input {
   border: none;
+  border-radius: 7px;
   background-color: #e6f9ff;
-  border-bottom: 1px solid #33ccff;
+  border-bottom: 1px solid #928DC4;
   margin-bottom: 1.25rem;
   padding: 0.75rem 0.5rem;
   font-size: 1rem;
