@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import ChartsPage from "../UserComponents/UserChart";
-import PortfolioValue from "../PortfolioValue";
+import PortfolioValue from "../PortfolioComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
@@ -20,7 +20,7 @@ function PortfolioColumns(props) {
                         Your Portfolio
                     </h2>
                     <h3 className="mt-3 text-center">
-                    <PortfolioValue/>
+                        <UserPortfolioValue/>
                     </h3>
                     <div className="mt-4 text-center">
                         <ChartsPage></ChartsPage>
