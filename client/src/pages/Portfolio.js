@@ -11,14 +11,26 @@ function Portfolio() {
 
 
   useEffect(() => {
+    loadStocks();
     API.getUser(user.id).then((res) => {
       setUsername(res.data.username);
       setEmail(res.data.email);
     });
   }, [user]);
 
+  function loadStocks() {
+    API.getUserStocks()
+  };
+
+
+
   return (
-        <PortfolioColumns></PortfolioColumns>
+        <PortfolioColumns
+          portfolioValue = {}
+          stockName = {}
+          stockShares = {}
+          shareValues = {}
+        />
   )
 };
 
