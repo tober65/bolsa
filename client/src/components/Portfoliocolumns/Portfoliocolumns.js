@@ -4,6 +4,10 @@ import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import ChartsPage from "../Userchart/Userchart";
+import PortfolioValue from "../PortfolioValue";
+import UserStocks from "../UserStocks";
+import UserShares from "../UserShares";
+import UserSharesPrice from "../UserSharesPrice";
 import "./columns.css";
 
 function PortfolioColumns(props) {
@@ -16,7 +20,7 @@ function PortfolioColumns(props) {
                         Your Portfolio
                     </h2>
                     <h3 className="mt-3 text-center">
-                    $2,078.87
+                    <PortfolioValue/>
                     </h3>
                     <div className="mt-4 text-center">
                         <ChartsPage></ChartsPage>
@@ -32,72 +36,9 @@ function PortfolioColumns(props) {
                             </h5>
                                 </Card.Title>
                                 <Row className = "test">
-                                    <Col lg={6} className = "test">
-                                        <p className= "userStocks test">
-                                            TSLA - Tesla
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userShares test">
-                                            300 Shares
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userSharePrice test">
-                                            $495000
-                                </p>
-                                    </Col>
-                                </Row>
-                                <Row className = "test">
-                                    <Col lg={6} className = "test">
-                                        <p className= "userStocks test">
-                                            AAPL - Apple
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userShares test">
-                                            50 Shares
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userSharePrice test">
-                                            $495000
-                                </p>
-                                    </Col>
-                                </Row>
-                                <Row className = "test">
-                                    <Col lg={6} className = "test">
-                                        <p className= "userStocks test">
-                                            MSFT - Microsoft
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userShares test">
-                                            100 Shares
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userSharePrice test">
-                                            $495000
-                                </p>
-                                    </Col>
-                                </Row>
-                                <Row className = "test">
-                                    <Col lg={6} className = "test">
-                                        <p className= "userStocks test">
-                                            DAL - Delta Airlines
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userShares test">
-                                            120 Shares
-                                </p>
-                                    </Col>
-                                    <Col lg={3} className = "test">
-                                        <p className = "userSharePrice test">
-                                            $495000
-                                </p>
-                                    </Col>
+                                    <UserStocks/>
+                                    <UserShares/>
+                                    <UserSharesPrice/>
                                 </Row>
                             </Card.Body>
                         </Container>
