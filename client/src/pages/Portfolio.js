@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PortfolioColumns from "../components/Portfoliocolumns";
+import Navbar from "../components/Navbar";
 import API from "./../utils/API";
-import Container from "../components/Container";
-import { Link } from "react-router-dom";
+import {Container} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 import { useAuth } from "../utils/auth";
 
 function Portfolio() {
