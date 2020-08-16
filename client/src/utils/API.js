@@ -2,7 +2,7 @@ import axios from "axios";
 export default {
   // Gets a single user by id
   getUser: (id) => {
-    return axios.get(`/api/user/${id}`);
+    return axios.get(`api/user/${id}`);
   },
   // sign up a user to our service
   signUpUser: (username, email, password) => {
@@ -12,7 +12,7 @@ export default {
   //TODO: allow exchange changes
   getStockSymbols: () => {
     return axios.get(
-      "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bsq5rugfkcbcavsjc2vg",
+      "api/symbols",
     );
   }
 };
