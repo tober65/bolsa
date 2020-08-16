@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import PortfolioColumns from "../components/Portfoliocolumns";
+import Navbar from "../components/Navbar";
 import API from "./../utils/API";
-import Container from "../components/Container";
-import { Link } from "react-router-dom";
+import {Container} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 import { useAuth } from "../utils/auth";
 
 function Portfolio() {
@@ -16,14 +18,16 @@ function Portfolio() {
     });
   }, [user]);
 
-  return (
+  return (<div>
+    <Navbar>
+    </Navbar>
     <Container>
-      <h1>On the profile page!</h1>
-      <p>Username: {username}</p>
-      <p>Email: {email}</p>
-      <Link to="/">Go home</Link>
+      <Row>
+        <PortfolioColumns></PortfolioColumns>
+      </Row>
     </Container>
-  );
-}
+  </div>
+  )
+};
 
 export default Portfolio;
