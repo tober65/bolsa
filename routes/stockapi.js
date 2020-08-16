@@ -11,7 +11,7 @@ router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
       if (err) {
         res.status(400).send(err.message);
       } else {
-        res.status(200).end();
+        res.json(docs);
       }
     }
   );
@@ -38,6 +38,17 @@ router.get("/api/stocks/:symbol", (req, res) => {
       res.json(response);
   });
 });
+
+// Get a list of all supported stock symbols
+router.get("/api/stocks/", (req, res) => {
+    const searchUrl =
+      "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=" +
+      process.env.FINN_API_KEY;
+  
+    axios.get(searchUrl).then((response) => {
+        res.json(response);
+    });
+  });
 
 router.get("/api/company/:symbol", (req, res) => {
     const searchUrl =
@@ -69,4 +80,3 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
   });
 
   module.exports = router;
-  
