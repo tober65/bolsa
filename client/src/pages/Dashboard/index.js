@@ -4,7 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
 import StockPrice from "../../components/StockPrice";
-import StockNews from "../../components/NewsCompany";
+import CompanyNews from "../../components/CompanyNews";
+import CompanyFinancials from "../../components/CompanyFinancials";
 import API from "../../utils/API";
 import "./dashboard.css";
 
@@ -35,6 +36,7 @@ function Dashboard() {
         <Col>
           <SearchBox symbols={symbols} onChange={handleChange} />
           <StockPrice selectedSymbol={selectedSymbol} />
+          <div>BUY COMPONENT</div>
         </Col>
         <Col>
           <div>Graph</div>
@@ -42,10 +44,10 @@ function Dashboard() {
       </Row>
       <Row>
         <Col>
-          <div>Stock Basic Financials</div>
+          <CompanyFinancials selectedSymbol={selectedSymbol} />
         </Col>
         <Col>
-          <StockNews selectedSymbol={selectedSymbol} />
+          <CompanyNews selectedSymbol={selectedSymbol} />
         </Col>
       </Row>
     </Container>
