@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 
-class ChartsPage extends React.Component {
+class UserChart extends React.Component {
   state = {
     dataDoughnut: {
       labels: ["TSLA", "AAPL", "MSFT", "NVDA", "DAL"],
@@ -32,4 +32,4 @@ class ChartsPage extends React.Component {
   }
 }
 
-export default ChartsPage;
+export default UserChart;

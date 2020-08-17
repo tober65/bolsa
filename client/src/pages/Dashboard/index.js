@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
+import StockPrice from "../../components/StockPrice";
 import API from "../../utils/API";
 import "./dashboard.css";
 
@@ -30,9 +31,7 @@ function Dashboard() {
     <Container>
       <h1>Dashboard</h1>
       <SearchBox symbols={symbols} onChange={handleChange} />
-      <div style={{ color: "white" }}>
-        Selected Symbol: {JSON.stringify(selectedSymbol)}
-      </div>
+      <StockPrice selectedSymbol={selectedSymbol} />
     </Container>
   );
 }
