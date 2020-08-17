@@ -7,30 +7,34 @@ function Portfolio() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const { user } = useAuth();
+  const [stocks, setStocks] = useState([]);
 
 
 
   useEffect(() => {
-    loadStocks();
+    loadUserStocks();
     API.getUser(user.id).then((res) => {
       setUsername(res.data.username);
       setEmail(res.data.email);
     });
   }, [user]);
 
-  function loadStocks() {
+  function loadUserStocks() {
     API.getUserStocks()
+      .then(res => res.json())
+        .then((result)=> {
+          setStocks(result.stocks);
+        })
   };
 
-
+  //TO DO
+  //CREATE FUNCTIONS FOR THE FOLLOWING TASK:
+    //CALL API TO GET USER STOCKS
+      //RETRIEVE STOCK NAMES, # OF SHARES, AND TOTAL VALUE OF SHARES
+        //USING THIS OBTAIN TOTAL PORTFOLIO VALUE
 
   return (
-        <PortfolioColumns
-          portfolioValue = {}
-          stockName = {}
-          stockShares = {}
-          shareValues = {}
-        />
+        <PortfolioColumns/>
   )
 };
 

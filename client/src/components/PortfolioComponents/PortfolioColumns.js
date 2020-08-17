@@ -20,7 +20,7 @@ function PortfolioColumns(props) {
                         Your Portfolio
                     </h2>
                     <h3 className="mt-3 text-center">
-                        <UserPortfolioValue portfolioValue = {portfolioValue}/>
+                        <UserPortfolioValue/>
                     </h3>
                     <div className="mt-4 text-center">
                         <UserChart/>
@@ -36,9 +36,9 @@ function PortfolioColumns(props) {
                             </h5>
                                 </Card.Title>
                                 <Row className = "test">
-                                    <UserStocks stockName = {stockName}/>
-                                    <UserShares stockShares = {stockShares}/>
-                                    <UserSharesPrice stockValues = {shareValues}/>
+                                    <UserStocks/>
+                                    <UserShares/>
+                                    <UserSharesPrice/>
                                 </Row>
                             </Card.Body>
                         </Container>

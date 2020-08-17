@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 function UserSharesPrice({shareValues}) {
     return (<Col lg={3} className="test">
             <p className="userSharePrice test">
-                {shareValues}
+                $100
             </p>
         </Col>
     );
