@@ -25,7 +25,13 @@ export default {
   getCompanyInfo: (symbol) => {
     return axios.get(`/api/company/${symbol}`);
   },
-  getNews: (symbol) => {
+  getCompanyFinancials: (symbol) => {
+    return axios.get(`/api/financials/${symbol}`);
+  },
+  getNewsBySymbol: (symbol) => {
     return axios.get(`/api/stocksnews/${symbol}`);
   },
+  getMarketNews: () => {
+    return axios.get(`/api/news`);
+  }
 };
