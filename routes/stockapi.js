@@ -107,6 +107,28 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
   });
 });
 
+router.get("/api/candles/:symbol", (req, res) => {
+    const msPerYear = 31530000000;
+    const toTime = Math.floor(Date.now() / 1000);
+    const fromTime = Math.floor((Date.now() - msPerYear) / 1000);
+  
+    const searchUrl =
+      "https://finnhub.io/api/v1/stock/candle?resolution=1&symbol=" +
+      req.params.symbol.toUpperCase() +
+      "&token=" +
+      process.env.FINN_API_KEY +
+      "&from=" +
+      fromTime +
+      "&to=" +
+      toTime;
+
+      console.log(searchUrl);
+  
+    axios.get(searchUrl).then((response) => {
+      res.json(response.data);
+    });
+  });
+
 router.get("/api/news/", (req, res) => {
     const searchUrl =
       "https://finnhub.io/api/v1/news?category=general&token=" +
