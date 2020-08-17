@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
 import StockPrice from "../../components/StockPrice";
+import StockNews from "../../components/NewsCompany";
 import API from "../../utils/API";
 import "./dashboard.css";
 
@@ -30,8 +31,23 @@ function Dashboard() {
   return (
     <Container>
       <h1>Dashboard</h1>
-      <SearchBox symbols={symbols} onChange={handleChange} />
-      <StockPrice selectedSymbol={selectedSymbol} />
+      <Row>
+        <Col>
+          <SearchBox symbols={symbols} onChange={handleChange} />
+          <StockPrice selectedSymbol={selectedSymbol} />
+        </Col>
+        <Col>
+          <div>Graph</div>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <div>Stock Basic Financials</div>
+        </Col>
+        <Col>
+          <StockNews selectedSymbol={selectedSymbol} />
+        </Col>
+      </Row>
     </Container>
   );
 }
