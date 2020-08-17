@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
+import NewsColumn from "../../components/NewsColumn";
 import StockPrice from "../../components/StockPrice";
 import API from "../../utils/API";
 import "./dashboard.css";
@@ -32,6 +33,7 @@ function Dashboard() {
       <h1>Dashboard</h1>
       <SearchBox symbols={symbols} onChange={handleChange} />
       <StockPrice selectedSymbol={selectedSymbol} />
+      <NewsColumn/>
     </Container>
   );
 }
