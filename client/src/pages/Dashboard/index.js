@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
+import NewsColumn from "../../components/NewsColumn";
 import StockPrice from "../../components/StockPrice";
 import CompanyNews from "../../components/CompanyNews";
 import CompanyFinancials from "../../components/CompanyFinancials";
@@ -49,6 +50,9 @@ function Dashboard() {
         <Col>
           <CompanyNews selectedSymbol={selectedSymbol} />
         </Col>
+      </Row>
+      <Row>
+        <NewsColumn/>
       </Row>
     </Container>
   );

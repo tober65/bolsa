@@ -19,6 +19,9 @@ export default {
   getStockBySymbol: (symbol) => {
     return axios.get(`/api/stocks/${symbol}`);
   },
+  getCandlesBySymbol: (symbol) => {
+    return axios.get(`/api/candles/${symbol}`);
+  },
   getStockSymbols: () => {
     return axios.get(`/api/stocks/`);
   },
