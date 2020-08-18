@@ -77,16 +77,16 @@ router.get("/api/company/:symbol", (req, res) => {
 });
 
 router.get("/api/financials/:symbol", (req, res) => {
-    const searchUrl =
-      "https://finnhub.io/api/v1/stock/metric?symbol=" + 
-      req.params.symbol.toUpperCase() +
-      "&metric=all&token=" +
-      process.env.FINN_API_KEY;
-  
-    axios.get(searchUrl).then((response) => {
-      res.json(response.data);
-    });
+  const searchUrl =
+    "https://finnhub.io/api/v1/stock/metric?symbol=" +
+    req.params.symbol.toUpperCase() +
+    "&metric=all&token=" +
+    process.env.FINN_API_KEY;
+
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
   });
+});
 
 router.get("/api/stocksnews/:symbol", (req, res) => {
   const toString = moment().format("YYYY-MM-DD");
@@ -108,14 +108,13 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
 });
 
 router.get("/api/news/", (req, res) => {
-    const searchUrl =
-      "https://finnhub.io/api/v1/news?category=general&token=" +
-      process.env.FINN_API_KEY;
-  
-    axios.get(searchUrl).then((response) => {
-      res.json(response.data);
-    });
-  });
+  const searchUrl =
+    "https://finnhub.io/api/v1/news?category=general&token=" +
+    process.env.FINN_API_KEY;
 
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
+  });
+});
 
 module.exports = router;
