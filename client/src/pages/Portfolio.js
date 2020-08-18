@@ -8,8 +8,6 @@ function Portfolio() {
   const [email, setEmail] = useState("");
   const { user } = useAuth();
 
-
-
   useEffect(() => {
     API.getUser(user.id).then((res) => {
       setUsername(res.data.username);
@@ -17,8 +15,9 @@ function Portfolio() {
     });
   }, [user]);
 
+
   return (
-        <PortfolioColumns></PortfolioColumns>
+        <PortfolioColumns/>
   )
 };
 
