@@ -15,7 +15,6 @@ function CompanyFinancials(props) {
       .catch((err) => console.log("Error!", err));
   }, [props.selectedSymbol]);
 
-  console.log("test", financials);
   return (
     <div>
       <Row>
