@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../utils/auth";
 import API from "../../utils/API";
+import swal from "sweetalert";
 
 function BuyShares(props) {
   const [amount, setAmount] = useState(0);
@@ -9,7 +10,12 @@ function BuyShares(props) {
   const buyStocks = () => {
     API.addStocks(user.email, props.selectedSymbol.symbol, amount)
     .then(() => {
-      console.log('Buy successful'); //Modal goes  here.
+      swal({
+        title: "Purchase Successful",
+        text: `Congrats!! You now own ${amount} Shares of ${props.selectedSymbol.description}`,
+        icon: "success",
+        button: "OK",
+      });
     })
     .catch((err) => console.log("Error!", err));
   }
