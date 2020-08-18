@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col } from "react-bootstrap";
 import API from "../../utils/API";
 
 function CompanyFinancials(props) {
   const [financials, setFinancials] = useState({
-    metric: {}
+    metric: {},
   });
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function CompanyFinancials(props) {
       .catch((err) => console.log("Error!", err));
   }, [props.selectedSymbol]);
 
-  console.log('test', financials);
+  console.log("test", financials);
   return (
     <div>
       <Row>
@@ -38,12 +38,8 @@ function CompanyFinancials(props) {
           <div>{financials.metric["currentDividendYieldTTM"]}</div>
         </Col>
         <Col>
-          <div>header</div>
-          <div>item</div>
-        </Col>
-        <Col>
-          <div>header</div>
-          <div>item</div>
+          <div>Annual ROI</div>
+          <div>{financials.metric["roiAnnual"]}</div>
         </Col>
       </Row>
     </div>
