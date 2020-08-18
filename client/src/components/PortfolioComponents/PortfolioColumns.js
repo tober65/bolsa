@@ -44,6 +44,7 @@ function PortfolioColumns(props) {
                                     {stocks.map((stock) => {
                                         <UserStock stockName = {stock.symbol}/>
                                     })}
+                                    <UserShares/>
                                     <UserSharesPrice/>
                                 </Row>
                             </Card.Body>
