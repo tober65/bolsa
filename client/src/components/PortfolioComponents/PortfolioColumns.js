@@ -1,21 +1,16 @@
 import React from "react";
-import "../../utils/API";
 import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import UserChart from "../UserComponents/UserChart";
 import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
-import UserStock from "../UserComponents/UserStock";
+import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
 
-
-
 function PortfolioColumns(props) {
-    const stocks = getUserStocks(username);
-
     console.log(props);
     return (<div>
         <Container>
@@ -41,9 +36,7 @@ function PortfolioColumns(props) {
                             </h5>
                                 </Card.Title>
                                 <Row className = "test">
-                                    {stocks.map((stock) => {
-                                        <UserStock stockName = {stock.symbol}/>
-                                    })}
+                                    <UserStocks/>
                                     <UserShares/>
                                     <UserSharesPrice/>
                                 </Row>

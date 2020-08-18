@@ -1,13 +1,13 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-function UserStock({ stockName }) {
+function UserStocks({ stockName }) {
     return (<Col lg={6} className="test">
         <p className="userStocks test">
-            {stockName}
-        </p>
-    </Col>
+            Tesla
+            </p>
+        </Col>
     );
 }
 
-export default UserStock;
+export default UserStocks;
