@@ -43,6 +43,22 @@ function Dashboard() {
     setSelectedSymbol(value);
   };
 
+  if(Object.keys(selectedSymbol).length === 0) {
+    return(
+      <Container>
+        <h1>Dashboard</h1>
+        <Row>
+          <Col>
+            <SearchBox symbols={symbols} onChange={handleChange} />
+          </Col>
+          <Col>
+            <NewsColumn />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <h1>Dashboard</h1>
@@ -63,9 +79,6 @@ function Dashboard() {
         <Col>
           <CompanyNews selectedSymbol={selectedSymbol} />
         </Col>
-      </Row>
-      <Row>
-        <NewsColumn/>
       </Row>
     </Container>
   );

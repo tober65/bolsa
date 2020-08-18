@@ -5,7 +5,7 @@ import swal from "sweetalert";
 
 function BuyShares(props) {
   const [amount, setAmount] = useState(0);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const buyStocks = () => {
     API.addStocks(user.email, props.selectedSymbol.symbol, amount)
