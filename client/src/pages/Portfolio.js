@@ -9,23 +9,25 @@ function Portfolio() {
   const { user } = useAuth();
   const [stocks, setStocks] = useState([]);
 
-
-
   useEffect(() => {
-    loadUserStocks();
+    // loadUserStocks();
     API.getUser(user.id).then((res) => {
       setUsername(res.data.username);
       setEmail(res.data.email);
     });
   }, [user]);
 
-  function loadUserStocks() {
-    API.getUserStocks()
-      .then(res => res.json())
-        .then((result)=> {
-          setStocks(result.stocks);
-        })
-  };
+  console.log(username);
+
+stocks.symbol
+  
+  // function loadUserStocks() {
+  //   API.getUserStocks()
+  //     .then(res => res.json())
+  //       .then((result)=> {
+  //         setStocks(result.stocks);
+  //       })
+  // };
 
   //TO DO
   //CREATE FUNCTIONS FOR THE FOLLOWING TASK:
