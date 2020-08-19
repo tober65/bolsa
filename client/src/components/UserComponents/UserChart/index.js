@@ -2,13 +2,25 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 
-class UserChart extends React.Component {
-  state = {
+
+//Get the labels for the chart by mapping through the user's stocks and getting the symbols 
+//Data = the amount of shares the user has
+//Find a way to generate a random background color
+
+function UserChart(props) {
+  let labels = [];
+  let data = [];
+  for (let i = 0; i < props.stocks.length; i++) {
+    labels.push(props.stocks[i].symbol);
+    data.push(props.stocks[i].amount);
+  };
+  
+  let tableData = {
     dataDoughnut: {
-      labels: ["TSLA", "AAPL", "MSFT", "NVDA", "DAL"],
+      labels: labels,
       datasets: [
         {
-          data: [300, 50, 100, 40, 120],
+          data: data,
           backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
           hoverBackgroundColor: [
             "#FF5A5E",
@@ -20,16 +32,14 @@ class UserChart extends React.Component {
         }
       ]
     }
-  }
+  };
 
-  render() {
-    return (
-      <MDBContainer>
-        <h3 className="mt-5">Portfolio Distribution</h3>
-        <Doughnut className="mt-3" data={this.state.dataDoughnut} options={{ responsive: true, maintainAspectRatio: true, }} />
-      </MDBContainer>
-    );
-  }
+
+  return (<MDBContainer>
+    <h3 className="mt-5">Portfolio Distribution</h3>
+    <Doughnut className="mt-3" data={tableData.dataDoughnut} options={{ responsive: true, maintainAspectRatio: true, }} />
+  </MDBContainer>)
 }
+
 
 export default UserChart;

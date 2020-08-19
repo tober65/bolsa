@@ -35,10 +35,10 @@ function PortfolioColumns(props) {
                     <Col sm={6} md={5} lg={4} xl={5}>
                         <h2 className="mt-3 text-center">Your Portfolio</h2>
                         <h3 className="mt-3 text-center">
-                            <UserPortfolioValue />
+                            <UserPortfolioValue priceObj = {priceObj}/>
                         </h3>
                         <div className="mt-4 text-center">
-                            <UserChart />
+                            <UserChart stocks = {stocks}/>
                         </div>
                     </Col>
                     <Col sm={6} md={7} lg={8} xl={7}>
