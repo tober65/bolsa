@@ -16,7 +16,8 @@ function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
     let [price, setPrice] = useState({});
     useEffect(() => {
-        API.getUserStocks("test").then((results) => {
+        console.log(props.username);
+        API.getUserStocks(props.username).then((results) => {
             setStocks(results.data);
             let priceObj;
             for (let i = 0; i < results.data.length; i++) {
