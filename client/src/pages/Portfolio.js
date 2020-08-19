@@ -18,7 +18,7 @@ function Portfolio() {
   }, [user]);
 
   return (
-    username.length > 0 ? <PortfolioColumns username={username}></PortfolioColumns> : <div>Loading...</div>
+    email.length > 0 ? <PortfolioColumns username={email}></PortfolioColumns> : <div>Loading...</div>
   )
 
 };
