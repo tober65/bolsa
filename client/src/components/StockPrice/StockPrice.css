@@ -1,0 +1,17 @@
+.card-title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+.table-striped {
+    color: white;
+}
+
+.card-body {
+    background-color: #606075 ;
+    border-radius: 25px;
+    background: rgba(96, 96, 117, 0.6);
+}
