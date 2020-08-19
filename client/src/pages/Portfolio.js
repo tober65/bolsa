@@ -15,10 +15,10 @@ function Portfolio() {
     });
   }, [user]);
 
-
   return (
-        <PortfolioColumns/>
+    username.length > 0 ? <PortfolioColumns username={username}></PortfolioColumns> : <div>Loading...</div>
   )
+
 };
 
 export default Portfolio;
