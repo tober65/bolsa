@@ -2,20 +2,10 @@
     position: absolute;
 }
 
-.card-title {
-    color: white;
-    font-size: 24px;
-    font-weight: bolder;
+.news-row {
+  border-bottom: 1px solid white;
+  padding: 10px 0;
 }
-
-
-
-.table-striped {
-    color: white;
+.news-title {
+  border-bottom: 1px solid white;
 }
-
-.card-body {
-    background-color: #606075 ;
-    border-radius: 25px;
-}
-

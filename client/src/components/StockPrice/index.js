@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./StockPrice.css";
+
 
 function StockPrice(props) {
   return (

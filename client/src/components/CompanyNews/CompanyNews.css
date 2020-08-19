@@ -1,0 +1,11 @@
+#news {
+    position: absolute;
+}
+
+.news-row {
+  border-bottom: 1px solid white;
+  padding: 10px 0;
+}
+.news-title {
+  border-bottom: 1px solid white;
+}

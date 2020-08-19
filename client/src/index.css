@@ -33,3 +33,14 @@ button:active,
 button:focus {
   background-color: #16162a;
 }
+
+.card-body {
+  background-color: rgba(96, 96, 117, 0.9);
+  border-radius: 25px;
+}
+
+.card-title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
