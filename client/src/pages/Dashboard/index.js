@@ -38,7 +38,12 @@ function Dashboard() {
   }, [selectedSymbol]);
 
   const handleChange = (event, value) => {
-    setSelectedSymbol(value);
+    if(value) {
+      setSelectedSymbol(value);
+    } else {
+      setSelectedSymbol('');
+    }
+    
   };
 
   if (Object.keys(selectedSymbol).length === 0) {
