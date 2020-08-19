@@ -17,7 +17,7 @@ function CompanyNews(props) {
 
   return (
     <Card.Body className="my-2">
-      <Card.Title className="news-title">News</Card.Title>
+      <Card.Title className="news-title">{`${props.selectedSymbol.description} News`}</Card.Title>
       {news.map((item) => (
         <Row className="news-row">
           <Col xs={1}>
@@ -32,7 +32,7 @@ function CompanyNews(props) {
         </Row>
       ))}
     </Card.Body>
-);
+  );
 }
 
 export default CompanyNews;

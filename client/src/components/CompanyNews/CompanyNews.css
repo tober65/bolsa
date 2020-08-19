@@ -1,15 +1,7 @@
 #news {
     position: absolute;
 }
-.card-title {
-    color: white;
-    font-size: 24px;
-    font-weight: bolder;
-}
-.card-body {
-    background-color: rgba(192,192,192, 0.8);
-    border-radius: 25px;
-}
+
 .news-row {
   border-bottom: 1px solid white;
   padding: 10px 0;
