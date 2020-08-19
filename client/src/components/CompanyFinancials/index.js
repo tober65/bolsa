@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import API from "../../utils/API";
 
 function CompanyFinancials(props) {
@@ -16,7 +16,7 @@ function CompanyFinancials(props) {
   }, [props.selectedSymbol]);
 
   return (
-    <div>
+    <Card.Body className="my-2">
       <Row>
         <Col>
           <div>52 Week High</div>
@@ -41,7 +41,7 @@ function CompanyFinancials(props) {
           <div>{financials.metric["roiAnnual"]}</div>
         </Col>
       </Row>
-    </div>
+    </Card.Body>
   );
 }
 

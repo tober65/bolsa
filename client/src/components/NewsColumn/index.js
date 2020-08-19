@@ -16,7 +16,7 @@ function NewsColumn(props) {
 
   return (
     <div id="news">
-      <div className="card-body">
+      <div className="card-body my-2">
         <h4 className="card-title">News</h4>
         <div className="table-rep-plugin">
           <div

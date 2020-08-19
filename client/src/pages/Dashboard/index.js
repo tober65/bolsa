@@ -46,10 +46,10 @@ function Dashboard() {
       <Container>
         <h1>Dashboard</h1>
         <Row>
-          <Col md="auto" lg={4}>
+          <Col lg={4}>
             <SearchBox symbols={symbols} onChange={handleChange} />
           </Col>
-          <Col md="auto" lg={8}>
+          <Col lg={8}>
             <NewsColumn />
           </Col>
         </Row>
@@ -61,22 +61,18 @@ function Dashboard() {
     <Container>
       <h1>Dashboard</h1>
       <Row>
-        <Col>
+        <Col  lg={4}>
           <SearchBox symbols={symbols} onChange={handleChange} />
           <StockPrice selectedSymbol={selectedSymbol} price={price} />
           <BuyShares selectedSymbol={selectedSymbol} price={price} />
+          <CompanyFinancials selectedSymbol={selectedSymbol} />
         </Col>
-        <Col>
+        <Col  lg={8} style={{minHeight: 488}}>
           <StockChart selectedSymbol={selectedSymbol}/>
         </Col>
       </Row>
       <Row>
-        <Col>
-          <CompanyFinancials selectedSymbol={selectedSymbol} />
-        </Col>
-        <Col>
-          <CompanyNews selectedSymbol={selectedSymbol} />
-        </Col>
+        <CompanyNews selectedSymbol={selectedSymbol} />
       </Row>
     </Container>
   );

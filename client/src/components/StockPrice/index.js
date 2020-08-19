@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function StockPrice(props) {
   return (
-    <div>
+    <div className="my-2">
       <div>
         {props.selectedSymbol.displaySymbol} -{" "}
         {props.selectedSymbol.description}

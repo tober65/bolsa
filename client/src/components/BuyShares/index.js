@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import API from "../../utils/API";
 import swal from "sweetalert";
@@ -21,12 +22,12 @@ function BuyShares(props) {
   }
 
   return (
-    <div>
+    <Card.Body className="my-2">
       <div>Buy Shares</div>
       <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}></input>
       <div>{props.price.c * amount} US$</div>
       <div><button disabled={amount <= 0} onClick={buyStocks}>BUY</button></div>
-    </div>
+    </Card.Body>
   );
 }
 
