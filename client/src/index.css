@@ -21,8 +21,8 @@ a {
 button {
   border: none;
   cursor: pointer;
-  background-color: #25292c;
-  color: #928dc4;
+  background-color: #16162a;
+  color: #6565C2;
   font-size: 1.125rem;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
@@ -31,5 +31,5 @@ button {
 button:hover,
 button:active,
 button:focus {
-  background-color: #25292c;
+  background-color: #16162a;
 }
