@@ -11,11 +11,3 @@ function UserSharesPrice({price}) {
 }
 
 export default UserSharesPrice;
-
-
-//Get all the user stocks
-    //getUserStocks()
-//Get the value for each stock from the API
-    //stocks.price.c
-//Create a math function that takes the # of specific stocks and multiplies it by their value
-    //stocks.amount * stocks.price.c

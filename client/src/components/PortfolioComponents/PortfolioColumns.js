@@ -51,7 +51,7 @@ function PortfolioColumns(props) {
                                                 <tr className = "trPortfolio">
                                                     <th>Stock Name</th>
                                                     <th># of Shares</th>
-                                                    <th>Share Value</th>
+                                                    <th>Value of Shares</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
