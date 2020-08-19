@@ -8,6 +8,7 @@ import StockPrice from "../../components/StockPrice";
 import CompanyNews from "../../components/CompanyNews";
 import CompanyFinancials from "../../components/CompanyFinancials";
 import BuyShares from "../../components/BuyShares";
+import StockChart from "../../components/StockChart";
 import API from "../../utils/API";
 import "./dashboard.css";
 
@@ -66,7 +67,7 @@ function Dashboard() {
           <BuyShares selectedSymbol={selectedSymbol} price={price} />
         </Col>
         <Col>
-          <div>Graph</div>
+          <StockChart selectedSymbol={selectedSymbol}/>
         </Col>
       </Row>
       <Row>
