@@ -20,7 +20,6 @@ function Dashboard() {
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
 
-
   useEffect(() => {
     API.getStockSymbols()
       .then((response) => {
@@ -29,7 +28,6 @@ function Dashboard() {
       .catch((err) => console.log("Error!", err));
   }, []);
 
-  
   useEffect(() => {
     API.getStockBySymbol(selectedSymbol.symbol)
       .then((response) => {
@@ -38,20 +36,19 @@ function Dashboard() {
       .catch((err) => console.log("Error!", err));
   }, [selectedSymbol]);
 
-
   const handleChange = (event, value) => {
     setSelectedSymbol(value);
   };
 
-  if(Object.keys(selectedSymbol).length === 0) {
-    return(
+  if (Object.keys(selectedSymbol).length === 0) {
+    return (
       <Container>
         <h1>Dashboard</h1>
         <Row>
-          <Col>
+          <Col md="auto" lg={4}>
             <SearchBox symbols={symbols} onChange={handleChange} />
           </Col>
-          <Col>
+          <Col md="auto" lg={8}>
             <NewsColumn />
           </Col>
         </Row>
@@ -65,8 +62,8 @@ function Dashboard() {
       <Row>
         <Col>
           <SearchBox symbols={symbols} onChange={handleChange} />
-          <StockPrice selectedSymbol={selectedSymbol} price={price}/>
-          <BuyShares selectedSymbol={selectedSymbol} price={price}/>
+          <StockPrice selectedSymbol={selectedSymbol} price={price} />
+          <BuyShares selectedSymbol={selectedSymbol} price={price} />
         </Col>
         <Col>
           <div>Graph</div>
