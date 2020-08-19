@@ -1,10 +1,10 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-function UserShares({ StockShares }) {
+function UserShares({ stockShares }) {
     return (<Col lg={3} className="test">
         <p className="userShares test">
-            Tesla
+            {stockShares}
             </p>
         </Col>
     );
