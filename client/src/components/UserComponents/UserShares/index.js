@@ -2,7 +2,7 @@ import React from "react";
 import { Col } from "react-bootstrap";
 
 function UserShares({ stockShares }) {
-    return (<Col lg={3} className="test">
+    return (<Col className="test">
         <p className="userShares test">
             {stockShares}
             </p>

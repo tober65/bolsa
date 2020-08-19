@@ -3,25 +3,31 @@ import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import UserChart from "../UserComponents/UserChart";
 import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
-import API from "../../utils/API";
-
+import API from "../../utils/API"
 
 function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
-
+    let [price, setPrice] = useState({});
     useEffect(() => {
         API.getUserStocks("test").then((results) => {
             setStocks(results.data);
+            let priceObj;
+            for (let i = 0; i < results.data.length; i++) {
+                API.getStockBySymbol(results.data[i].symbol).then((response) => {
+                    priceObj = { ...priceObj, [results.data[i].symbol]: response.data.c }
+                    setPrice(priceObj);
+                }).catch((error) => { console.log(error) })
+            }
         }).catch((error) => console.log(error));
     }, []);
 
-    console.log(props);
     return (
         <div>
             <Container>
@@ -39,25 +45,28 @@ function PortfolioColumns(props) {
                         <Card className="mt-3 test">
                             <Container className="test">
                                 <Card.Body className="test">
-                                    {stocks.map((item) => {
-                                        return (
-                                            <table>
-                                                <th>Stocks</th>
-                                                <tr>
-                                                    <UserStocks />
+                                    <Row className="test">
+                                        <Table>
+                                            <thead>
+                                                <tr className = "trPortfolio">
+                                                    <th>Stock Name</th>
+                                                    <th># of Shares</th>
+                                                    <th>Share Value</th>
                                                 </tr>
-                                                <th>Shares</th>
-                                                <tr>
-                                                    <UserShares />
-                                                </tr>
-                                                <th>Price</th>
-                                                <tr>
-                                                    <UserSharesPrice />
-                                                </tr>
-                                            </table>
-                                        )
-                                    }
-                                    )}
+                                            </thead>
+                                            <tbody>
+                                                {stocks.map((item) => {
+                                                    return (
+                                                        <tr>
+                                                            <td><UserStocks stockName={item.symbol} /></td>
+                                                            <td><UserShares stockShares={item.amount} /></td>
+                                                            <td><UserSharesPrice price={price[item.symbol]} /></td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </Table>
+                                    </Row>
                                 </Card.Body>
                             </Container>
                         </Card>
