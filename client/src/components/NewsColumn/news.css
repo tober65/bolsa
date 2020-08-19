@@ -9,13 +9,17 @@
 }
 
 
-
-.table-striped {
-    color: white;
+.card-body {
+    background-color: rgba(192,192,192, 0.8);
+    border-radius: 25px;
 }
 
-.card-body {
-    background-color: #606075 ;
-    border-radius: 25px;
+.news-row {
+  border-bottom: 1px solid white;
+  padding: 10px 0;
+}
+
+.news-title {
+  border-bottom: 1px solid white;
 }
 
