@@ -9,7 +9,7 @@ function SearchBox(props) {
     <Autocomplete
       id="search-box"
       options={props.symbols}
-      getOptionLabel={(option) => option.displaySymbol}
+      getOptionLabel={(option) => `${option.displaySymbol} - ${option.description}` }
       style={{ width: 300 }}
       onChange={props.onChange}
       renderInput={(params) => (

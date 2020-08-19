@@ -1,0 +1,25 @@
+#news {
+    position: absolute;
+}
+
+.card-title {
+    background-color: #484D52;
+    color: white;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.table-rep-plugin {
+    background-color: #484D52;
+}
+
+.table-striped {
+    color: white;
+}
+
+.card-body {
+    background-color: #484D52 ;
+    border-radius: 25px;
+
+}
+

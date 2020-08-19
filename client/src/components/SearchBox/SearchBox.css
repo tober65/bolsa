@@ -6,10 +6,8 @@
   border-color: #ffffff !important;
 }
 
-
 .MuiAutocomplete-inputRoot {
   color: white !important;
- 
 }
 
 .MuiAutocomplete-root {
@@ -17,5 +15,9 @@
 }
 
 .MuiAutocomplete-popupIndicator {
+  color: white !important;
+}
+
+.MuiAutocomplete-clearIndicator {
   color: white !important;
 }
