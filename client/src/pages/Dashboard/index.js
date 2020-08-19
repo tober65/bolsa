@@ -7,16 +7,19 @@ import NewsColumn from "../../components/NewsColumn";
 import StockPrice from "../../components/StockPrice";
 import CompanyNews from "../../components/CompanyNews";
 import CompanyFinancials from "../../components/CompanyFinancials";
+import BuyShares from "../../components/BuyShares";
+import StockChart from "../../components/StockChart";
 import API from "../../utils/API";
 import "./dashboard.css";
 
 function Dashboard() {
-  // const { user, logout } = useAuth();
+  //const { user, logout } = useAuth();
   // const history = useHistory();
 
   //const goToEditProfile = () => history.push("/portfolio");
   const [symbols, setSymbols] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState({});
+  const [price, setPrice] = useState({});
 
   useEffect(() => {
     API.getStockSymbols()
@@ -26,33 +29,55 @@ function Dashboard() {
       .catch((err) => console.log("Error!", err));
   }, []);
 
+  useEffect(() => {
+    API.getStockBySymbol(selectedSymbol.symbol)
+      .then((response) => {
+        setPrice(response.data);
+      })
+      .catch((err) => console.log("Error!", err));
+  }, [selectedSymbol]);
+
   const handleChange = (event, value) => {
-    setSelectedSymbol(value);
+    if(value) {
+      setSelectedSymbol(value);
+    } else {
+      setSelectedSymbol('');
+    }
+    
   };
+
+  if (Object.keys(selectedSymbol).length === 0) {
+    return (
+      <Container>
+        <h1>Dashboard</h1>
+        <Row>
+          <Col lg={4}>
+            <SearchBox symbols={symbols} onChange={handleChange} />
+          </Col>
+          <Col lg={8}>
+            <NewsColumn />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
   return (
     <Container>
       <h1>Dashboard</h1>
       <Row>
-        <Col>
+        <Col  lg={4}>
           <SearchBox symbols={symbols} onChange={handleChange} />
-          <StockPrice selectedSymbol={selectedSymbol} />
-          <div>BUY COMPONENT</div>
-        </Col>
-        <Col>
-          <div>Graph</div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+          <StockPrice selectedSymbol={selectedSymbol} price={price} />
+          <BuyShares selectedSymbol={selectedSymbol} price={price} />
           <CompanyFinancials selectedSymbol={selectedSymbol} />
         </Col>
-        <Col>
-          <CompanyNews selectedSymbol={selectedSymbol} />
+        <Col  lg={8} style={{minHeight: 488}}>
+          <StockChart selectedSymbol={selectedSymbol}/>
         </Col>
       </Row>
       <Row>
-        <NewsColumn/>
+        <CompanyNews selectedSymbol={selectedSymbol} />
       </Row>
     </Container>
   );

@@ -42,6 +42,7 @@
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
     "react-bootstrap": "^1.3.0",
-    "react-stockcharts": "^0.7.8"
+    "react-stockcharts": "^0.7.8",
+    "sweetalert": "^2.1.2"
   }
 }

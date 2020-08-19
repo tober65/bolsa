@@ -15,7 +15,9 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.3.0",
-    "react-stockcharts": "^0.7.8"
+    "react-stockcharts": "^0.7.8",
+    "react-tradingview-widget": "^1.3.2",
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
