@@ -9,3 +9,6 @@ function UserPortfolioValue({value}) {
 }
 
 export default UserPortfolioValue;
+
+//Get all the user stocks and their values
+//Create a function that adds them together

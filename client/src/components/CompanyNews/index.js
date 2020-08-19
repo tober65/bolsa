@@ -3,6 +3,7 @@ import { Card, Row, Col } from "react-bootstrap"
 import API from "../../utils/API";
 import moment from "moment";
 
+
 function CompanyNews(props) {
   const [news, setNews] = useState([]);
 

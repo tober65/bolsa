@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import UserChart from "../UserComponents/UserChart";
 import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
@@ -19,13 +20,14 @@ function PortfolioColumns(props) {
             setStocks(results.data);
             let priceObj;
             for (let i = 0; i < results.data.length; i++) {
-                API.getStockBySymbol(results.data[i].symbol).then((response)=> {
-                    priceObj = {...priceObj, [results.data[i].symbol] : response.data.c}
+                API.getStockBySymbol(results.data[i].symbol).then((response) => {
+                    priceObj = { ...priceObj, [results.data[i].symbol]: response.data.c }
                     setPrice(priceObj);
-                }).catch((error) => {console.log(error)})
+                }).catch((error) => { console.log(error) })
             }
         }).catch((error) => console.log(error));
     }, []);
+
     return (
         <div>
             <Container>
@@ -43,19 +45,27 @@ function PortfolioColumns(props) {
                         <Card className="mt-3 test">
                             <Container className="test">
                                 <Card.Body className="test">
-                                    <Card.Title className="test">
-                                        <h5 className="test stocks">Stocks</h5>
-                                    </Card.Title>
                                     <Row className="test">
-                                        {stocks.map((item) => {
-                                            return (
-                                                <tr>
-                                                    <UserStocks stockName={item.symbol} />
-                                                    <UserShares stockShares={item.amount} />
-                                                    <UserSharesPrice price={price[item.symbol]}/>
+                                        <Table>
+                                            <thead>
+                                                <tr className = "trPortfolio">
+                                                    <th>Stock Name</th>
+                                                    <th># of Shares</th>
+                                                    <th>Value of Shares</th>
                                                 </tr>
-                                            );
-                                        })}
+                                            </thead>
+                                            <tbody>
+                                                {stocks.map((item) => {
+                                                    return (
+                                                        <tr>
+                                                            <td><UserStocks stockName={item.symbol} /></td>
+                                                            <td><UserShares stockShares={item.amount} /></td>
+                                                            <td><UserSharesPrice price={price[item.symbol]} /></td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </Table>
                                     </Row>
                                 </Card.Body>
                             </Container>
