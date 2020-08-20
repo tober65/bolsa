@@ -38,7 +38,7 @@ function PortfolioColumns(props) {
                 <Row className = "mt-4">
                     <Col sm={6} md={5} lg={4} xl={5} className = "column1">
                         <h3 className="mt-3 text-center">
-                            $ <UserPortfolioValue price={price} /> Invested
+                            $ <UserPortfolioValue price={price} stocks= {stocks}/> Invested
                         </h3>
                         <h2 className="mt-3 text-center">
                             Total Balance
