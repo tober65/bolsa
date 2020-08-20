@@ -36,7 +36,6 @@ function UserChart(props) {
 
 
   return (<MDBContainer>
-    <h3 className="mt-5">Portfolio Distribution</h3>
     <Doughnut className="mt-3" data={tableData.dataDoughnut} options={{ responsive: true, maintainAspectRatio: true, }} />
   </MDBContainer>)
 }
