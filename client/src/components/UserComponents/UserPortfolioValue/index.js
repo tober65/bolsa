@@ -1,14 +1,23 @@
 import React from "react";
 
-function UserPortfolioValue({value}) {
+function UserPortfolioValue(props) {
+    let totalValue = 0;
+    let stocksPrice = Object.values(props.price);
+    let stocksAmount = [];
+
+    for (let i = 0; i < props.stocks.length; i++) {
+        stocksAmount.push(props.stocks[i].amount);
+    }
+
+    for (let i = 0; i < stocksPrice.length; i++) {
+        totalValue = totalValue + (stocksPrice[i] * stocksAmount[i])
+    }
+
+    totalValue.toFixed(2);
+    console.log(stocksPrice);
     return(
-        <p>
-            $12312312
-        </p>
+        totalValue
     );
 }
 
 export default UserPortfolioValue;
-
-//Get all the user stocks and their values
-//Create a function that adds them together
