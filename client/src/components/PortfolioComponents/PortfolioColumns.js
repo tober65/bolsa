@@ -11,6 +11,7 @@ import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
 import API from "../../utils/API"
+import { set } from "mongoose";
 
 function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
@@ -25,7 +26,8 @@ function PortfolioColumns(props) {
                     priceObj = { ...priceObj, [results.data[i].symbol]: response.data.c }
                     setPrice(priceObj);
                 }).catch((error) => { console.log(error) })
-            }
+            };
+            let totalPrice = 0;
         }).catch((error) => console.log(error));
     }, []);
 
@@ -36,7 +38,7 @@ function PortfolioColumns(props) {
                     <Col sm={6} md={5} lg={4} xl={5}>
                         <h2 className="mt-3 text-center">Your Portfolio</h2>
                         <h3 className="mt-3 text-center">
-                            <UserPortfolioValue/>
+                            <UserPortfolioValue price = {price}/>
                         </h3>
                         <div className="mt-4 text-center">
                             <UserChart stocks = {stocks}/>
