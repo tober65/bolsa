@@ -11,7 +11,7 @@ import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
 import API from "../../utils/API"
-import { set } from "mongoose";
+
 
 function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
@@ -27,7 +27,6 @@ function PortfolioColumns(props) {
                     setPrice(priceObj);
                 }).catch((error) => { console.log(error) })
             };
-            let totalPrice = 0;
         }).catch((error) => console.log(error));
     }, []);
 
