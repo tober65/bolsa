@@ -12,7 +12,6 @@ import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import "./columns.css";
 import API from "../../utils/API"
 
-
 function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
     let [price, setPrice] = useState({});
@@ -44,10 +43,10 @@ function PortfolioColumns(props) {
                         </div>
                     </Col>
                     <Col sm={6} md={7} lg={8} xl={7}>
-                        <Card className="mt-3 test">
-                            <Container className="test">
-                                <Card.Body className="test">
-                                    <Row className="test">
+                        <Card className="mt-3 portfolioCont">
+                            <Container>
+                                <Card.Body>
+                                    <Row>
                                         <Table>
                                             <thead>
                                                 <tr className = "trPortfolio">

@@ -7,9 +7,10 @@ function UserPortfolioValue(props) {
     for (let i = 0; i < stocks.length; i++) {
         totalValue = totalValue + stocks[i] 
     }
+    totalValue.toFixed(2);
     console.log(stocks);
     return(
-        `$ ${totalValue}`
+        totalValue
     );
 }
 
