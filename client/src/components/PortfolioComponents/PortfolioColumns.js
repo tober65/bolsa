@@ -9,6 +9,8 @@ import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
+import UserBalance from "../UserComponents/UserBalance";
+import InputBalance from "../InputBalance";
 import "./columns.css";
 import API from "../../utils/API"
 
@@ -32,24 +34,34 @@ function PortfolioColumns(props) {
     return (
         <div>
             <Container>
-                <Row>
-                    <Col sm={6} md={5} lg={4} xl={5}>
-                        <h2 className="mt-3 text-center">Your Portfolio</h2>
+                <h2 className="mt-3 text-center">Your Portfolio</h2>
+                <Row className = "mt-4">
+                    <Col sm={6} md={5} lg={4} xl={5} className = "column1">
                         <h3 className="mt-3 text-center">
-                            $ <UserPortfolioValue price = {price}/>
+                            $ <UserPortfolioValue price={price} /> Invested
                         </h3>
-                        <div className="mt-4 text-center">
-                            <UserChart stocks = {stocks}/>
+                        <h2 className="mt-3 text-center">
+                            Total Balance
+                        </h2>
+                        <h3 className="mt-3 text-center">
+                            <UserBalance />
+                        </h3>
+                        <div>
+                            <InputBalance />
                         </div>
                     </Col>
-                    <Col sm={6} md={7} lg={8} xl={7}>
+                    <Col sm={6} md={7} lg={8} xl={7} className = "column2">
+                        <h3 className= "mt-3 text-center">Portfolio Distribution</h3>
+                        <div className="mt-4 text-center">
+                            <UserChart stocks={stocks} />
+                        </div>
                         <Card className="mt-3 portfolioCont">
                             <Container>
                                 <Card.Body>
                                     <Row>
                                         <Table>
                                             <thead>
-                                                <tr className = "trPortfolio">
+                                                <tr className="trPortfolio">
                                                     <th>Stock Name</th>
                                                     <th># of Shares</th>
                                                     <th>Value of Shares</th>
