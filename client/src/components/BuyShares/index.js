@@ -6,6 +6,7 @@ import swal from "sweetalert";
 
 function BuyShares(props) {
   const [amount, setAmount] = useState(0);
+  const [userStocks, setUserStocks] = useState([]);
   const { user } = useAuth();
 
   const buyStocks = () => {
@@ -20,13 +21,54 @@ function BuyShares(props) {
     })
     .catch((err) => console.log("Error!", err));
   }
+  
+  useEffect(() => {
+    API.getUserStocks(user.email)
+      .then((response) => {
+        setUserStocks(response.data);
+        console.log(response);
+      })
+      .catch((err) => console.log("Error!", err));
+  }, []);
+
+  const getUserStocksView = () => {
+    let filteredStocks = userStocks.filter(stock => stock.symbol === props.selectedSymbol.symbol);
+
+    if(filteredStocks.length) {
+      return (
+        <div>Shares: {filteredStocks[0].amount}</div>
+      );
+    }
+  }
 
   return (
     <Card.Body className="my-2">
-      <div>Buy Shares</div>
-      <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}></input>
+      <div>Trade</div>
+      {getUserStocksView()}
+      <div>BUY SHARES</div>
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      ></input>
       <div>{props.price.c * amount} US$</div>
-      <div><button disabled={amount <= 0} onClick={buyStocks}>BUY</button></div>
+      <div>
+        <button disabled={amount <= 0} onClick={buyStocks}>
+          BUY
+        </button>
+      </div>
+      <div>SELL SHARES</div>
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      ></input>
+      <div>{props.price.c * amount} US$</div>
+      <div>
+        <button disabled={amount <= 0} onClick={buyStocks}>
+          SELL
+        </button>
+      </div>
     </Card.Body>
   );
 }
