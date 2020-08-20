@@ -27,6 +27,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  balance: {
+    type: Number,
+    default: 0
+  }
 });
 
 // Execute before each user.save() call

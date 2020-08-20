@@ -8,6 +8,9 @@ export default {
   signUpUser: (username, email, password) => {
     return axios.post("api/signup", {username: username, email: email, password: password});
   },
+  setBalance: (username, amount) => {
+    return axios.post(`/api/balance/${username}/${amount}`);
+  },
   // Adds a user's stocks to the database
   addStocks: (username, symbol, amount) => {
     return axios.post(`/api/userstocks/${username}/${symbol}/${amount}`);

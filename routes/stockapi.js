@@ -18,6 +18,20 @@ router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
   );
 });
 
+router.post("/api/balance/:username/:amount", (req, res) => {
+    models.User.findOneAndUpdate(
+      { username: req.params.username },
+      { balance: req.params.amount },
+      (err, docs) => {
+        if (err) {
+          res.status(400).send(err.message);
+        } else {
+          res.json(docs);
+        }
+      }
+    );
+  });
+
 router.get("/api/userstocks/:username", (req, res) => {
   models.Stock.find({ username: req.params.username }, (err, docs) => {
     if (err) {
