@@ -13,10 +13,9 @@ import API from "../../utils/API";
 import "./dashboard.css";
 
 function Dashboard() {
-  //const { user, logout } = useAuth();
+  const { user, logout } = useAuth();
   // const history = useHistory();
 
-  //const goToEditProfile = () => history.push("/portfolio");
   const [symbols, setSymbols] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
