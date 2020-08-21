@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-
+import { Table } from "react-bootstrap";
+import "./StockPrice.css";
 
 function StockPrice(props) {
   return (
-    <div className="card-body my-2">
-      <div className="card-title">
-        {props.selectedSymbol.displaySymbol} -{" "}
-        {props.selectedSymbol.description}
-      </div>
-      <div>{props.price.c} US$</div>
-      <div>{props.price.pc} US$</div>
+    <div className="stockprices p-1">
+      <Table>
+        <thead>
+          {props.selectedSymbol.displaySymbol} -{" "}
+          {props.selectedSymbol.description}
+        </thead>
+        <tbody className="prices">
+          <tr>
+            <td>Current Price</td>
+            <td>{props.price.c} US$</td>
+          </tr>
+          <tr>
+            <td>Previous Close</td>
+            <td>{props.price.pc} US$</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 }

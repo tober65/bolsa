@@ -3,7 +3,7 @@
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
+  border-color: #606075 !important;
 }
 
 .MuiAutocomplete-inputRoot {
@@ -19,5 +19,5 @@
 }
 
 .MuiAutocomplete-clearIndicator {
-  color: white !important;
+  color: #606075 !important;
 }
