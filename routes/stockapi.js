@@ -20,7 +20,7 @@ router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
 
 router.post("/api/balance/:username/:amount", (req, res) => {
     models.User.findOneAndUpdate(
-      { username: req.params.username },
+      { email: req.params.username },
       { balance: req.params.amount },
       (err, docs) => {
         if (err) {

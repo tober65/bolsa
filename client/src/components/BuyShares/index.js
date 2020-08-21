@@ -30,7 +30,8 @@ function BuyShares(props) {
     let filteredStocks = userStocks.filter(
       (stock) => stock.symbol === props.selectedSymbol.symbol
     );
-    let currentAmount = filteredStocks[0].amount;
+
+    let currentAmount = filteredStocks.length ? filteredStocks[0].amount : 0;
 
     let cost = buyAmount * props.price.c;
 
