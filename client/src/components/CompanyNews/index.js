@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap"
 import API from "../../utils/API";
 import moment from "moment";
+import "./CompanyNews.css";
 
 
 function CompanyNews(props) {
@@ -16,6 +17,7 @@ function CompanyNews(props) {
   }, [props.selectedSymbol]);
 
   return (
+    <div className="companynews">
     <Card.Body className="my-2">
       <Card.Title className="news-title">{`${props.selectedSymbol.description} News`}</Card.Title>
       {news.map((item) => (
@@ -32,6 +34,7 @@ function CompanyNews(props) {
         </Row>
       ))}
     </Card.Body>
+    </div>
   );
 }
 
