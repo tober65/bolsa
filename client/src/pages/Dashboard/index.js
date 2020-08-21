@@ -72,10 +72,12 @@ function Dashboard() {
           <BuyShares selectedSymbol={selectedSymbol} price={price} />
           <CompanyFinancials selectedSymbol={selectedSymbol} />
         </Col>
+        <br></br>
         <Col  lg={8} style={{minHeight: 488}}>
           <StockChart selectedSymbol={selectedSymbol}/>
         </Col>
       </Row>
+      <br></br>
       <Row>
         <CompanyNews selectedSymbol={selectedSymbol} />
       </Row>
