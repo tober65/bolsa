@@ -1,0 +1,23 @@
+.stockprices {
+    background-color: rgba(96, 96, 117, 0.9);
+    border-radius: 25px;
+    color: white;
+}
+
+.stockprices thead {
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 250, 250, 0.2);
+    color: white;
+    text-align: center;
+}
+
+
+
+.stockprices td {
+    width: 49%;
+    display: inline-block;
+    color: white;
+    border-top: 1px solid rgba(255, 250, 250, 0.2);
+    font-size: 14px;
+
+}
