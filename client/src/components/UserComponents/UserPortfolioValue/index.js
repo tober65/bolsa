@@ -13,8 +13,9 @@ function UserPortfolioValue(props) {
         totalValue = totalValue + (stocksPrice[i] * stocksAmount[i])
     }
 
-    totalValue.toFixed(2);
+    totalValue = +totalValue.toFixed(2)
     console.log(stocksPrice);
+    
     return(
         totalValue
     );
