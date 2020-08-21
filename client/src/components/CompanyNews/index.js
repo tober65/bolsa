@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap"
 import API from "../../utils/API";
 import moment from "moment";
+import "./CompanyNews.css";
 
 
 function CompanyNews(props) {
