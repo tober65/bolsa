@@ -12,7 +12,6 @@ function BuyShares(props) {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    API.setBalance(user.email, 5000).then(response => console.log('response', response));
     API.getUser(user.id)
       .then((response) => {
         setUserData(response.data);
@@ -23,6 +22,7 @@ function BuyShares(props) {
       .then((response) => {
         setUserStocks(response.data);
       })
+      
       .catch((err) => console.log("Error!", err));
   }, []);
 
@@ -33,12 +33,12 @@ function BuyShares(props) {
 
     let currentAmount = filteredStocks.length ? filteredStocks[0].amount : 0;
 
-    let cost = buyAmount * props.price.c;
+    let cost = +(+buyAmount * props.price.c).toFixed(2);
 
     API.addStocks(
       user.email,
       props.selectedSymbol.symbol,
-      currentAmount + buyAmount
+      currentAmount + Number(buyAmount)
     )
       .then(() => {
         API.getUserStocks(user.email)
@@ -49,7 +49,7 @@ function BuyShares(props) {
       })
       .catch((err) => console.log("Error!", err));
 
-    API.setBalance(user.email, userData.balance - cost)
+    API.setBalance(user.email, +(userData.balance - cost).toFixed(2))
       .then(() => {
         API.getUser(user.id)
           .then((response) => {
@@ -60,10 +60,10 @@ function BuyShares(props) {
       .catch((err) => console.log("Error!", err));
 
     swal({
-      title: "Sell Successful",
+      title: "Buy Successful",
       text: `Congrats!! You now own ${buyAmount} Shares of ${
         props.selectedSymbol.description
-      }. Your current balance is ${userData.balance - cost}`,
+      }. Your current balance is ${+(userData.balance - cost).toFixed(2)}`,
       icon: "success",
       button: "OK",
     });
@@ -75,12 +75,12 @@ function BuyShares(props) {
     );
     let currentAmount = filteredStocks[0].amount;
 
-    let profit = sellAmount * props.price.c;
+    let profit = +(+sellAmount * props.price.c).toFixed(2);
 
     API.addStocks(
       user.email,
       props.selectedSymbol.symbol,
-      currentAmount - sellAmount
+      currentAmount - +sellAmount
     )
       .then(() => {
         API.getUserStocks(user.email)
@@ -91,7 +91,7 @@ function BuyShares(props) {
       })
       .catch((err) => console.log("Error!", err));
 
-    API.setBalance(user.email, userData.balance + profit)
+    API.setBalance(user.email, +(userData.balance + profit).toFixed(2))
       .then(() => {
         API.getUser(user.id)
           .then((response) => {
@@ -105,7 +105,7 @@ function BuyShares(props) {
       title: "Sell Successful",
       text: `Congrats!! You sold ${sellAmount} Shares of ${
         props.selectedSymbol.description
-      }. Your current balance is ${userData.balance + profit}`,
+      }. Your current balance is ${+(userData.balance + profit).toFixed(2)}`,
       icon: "success",
       button: "OK",
     });
@@ -135,10 +135,10 @@ function BuyShares(props) {
             value={sellAmount}
             onChange={(e) => setSellAmount(e.target.value)}
           ></input>
-          <div>{props.price.c * sellAmount} US$</div>
+          <div>{+(props.price.c * +sellAmount).toFixed(2)} US$</div>
           <div>
             <button
-              disabled={sellAmount > filteredStocks[0].amount}
+              disabled={+sellAmount > filteredStocks[0].amount || +sellAmount <= 0}
               onClick={sellStocks}
             >
               SELL
@@ -148,11 +148,10 @@ function BuyShares(props) {
       );
     }
   };
-  console.log('balance:', userData.balance);
-  console.log('stocks:', userStocks);
   return (
     <Card.Body className="my-2">
       <div>Trade</div>
+  <div>Balance: {userData.balance}</div>
       {getUserStocksView()}
       <div>BUY SHARES</div>
       <input
@@ -160,9 +159,9 @@ function BuyShares(props) {
         value={buyAmount}
         onChange={(e) => setBuyAmount(e.target.value)}
       ></input>
-      <div>{props.price.c * buyAmount} US$</div>
+      <div>{+(props.price.c * buyAmount).toFixed(2)} US$</div>
       <div>
-        <button disabled={buyAmount <= 0} onClick={buyStocks}>
+        <button disabled={+buyAmount <= 0 || (+buyAmount * props.price.c) > userData.balance} onClick={buyStocks}>
           BUY
         </button>
       </div>
