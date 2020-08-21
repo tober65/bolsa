@@ -1,9 +1,10 @@
 import React from "react";
 
-function UserBalance() {
+
+function UserBalance( {Balance} ) {
     return(
         <p>
-            $234234234234234234
+          ${Balance}
         </p>
     )
 }

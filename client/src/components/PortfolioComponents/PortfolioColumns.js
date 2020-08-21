@@ -13,11 +13,18 @@ import UserBalance from "../UserComponents/UserBalance";
 import InputBalance from "../InputBalance";
 import "./columns.css";
 import API from "../../utils/API"
+import { useAuth } from "../../utils/auth";
 
 function PortfolioColumns(props) {
     let [stocks, setStocks] = useState([]);
     let [price, setPrice] = useState({});
+    let [userID, setUserId] = useState("");
+    const { user } = useAuth();
     useEffect(() => {
+        API.getUser(user.id).then((res) =>{
+            setUserId(res.data.balance);
+        })
+
         console.log(props.username);
         API.getUserStocks(props.username).then((results) => {
             setStocks(results.data);
@@ -38,13 +45,13 @@ function PortfolioColumns(props) {
                 <Row className = "mt-4">
                     <Col sm={6} md={5} lg={4} xl={5} className = "column1">
                         <h3 className="mt-3 text-center">
-                            $ <UserPortfolioValue price={price} stocks= {stocks}/> Invested
+                            $<UserPortfolioValue price={price} stocks= {stocks}/> Invested
                         </h3>
                         <h2 className="mt-3 text-center">
                             Total Balance
                         </h2>
                         <h3 className="mt-3 text-center">
-                            <UserBalance />
+                            <UserBalance Balance = {userID}/>
                         </h3>
                         <div>
                             <InputBalance />
@@ -64,7 +71,7 @@ function PortfolioColumns(props) {
                                                 <tr className="trPortfolio">
                                                     <th>Stock Name</th>
                                                     <th># of Shares</th>
-                                                    <th>Value of Shares</th>
+                                                    <th>Price Per Share</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
