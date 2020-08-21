@@ -16,6 +16,7 @@ function NewsColumn(props) {
   }, []);
   
   return (
+    <div className="newscolumn">
     <Card.Body className="my-2">
       <Card.Title className="news-title">News</Card.Title>
       {news.map((item) => (
@@ -32,6 +33,7 @@ function NewsColumn(props) {
         </Row>
       ))}
     </Card.Body>
+    </div>
   );
 }
 export default NewsColumn;

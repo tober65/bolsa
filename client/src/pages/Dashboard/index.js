@@ -48,7 +48,7 @@ function Dashboard() {
   if (Object.keys(selectedSymbol).length === 0) {
     return (
       <Container>
-        <h1>Dashboard</h1>
+        <h1 className="db">Dashboard</h1>
         <Row>
           <Col lg={4}>
             <SearchBox symbols={symbols} onChange={handleChange} />
@@ -67,6 +67,7 @@ function Dashboard() {
       <Row>
         <Col  lg={4}>
           <SearchBox symbols={symbols} onChange={handleChange} />
+          <br></br>
           <StockPrice selectedSymbol={selectedSymbol} price={price} />
           <BuyShares selectedSymbol={selectedSymbol} price={price} />
           <CompanyFinancials selectedSymbol={selectedSymbol} />
