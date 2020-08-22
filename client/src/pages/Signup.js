@@ -57,7 +57,11 @@ function Signup() {
           name="username"
           type="text"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
         <InputGroup
           id="email"
@@ -66,7 +70,11 @@ function Signup() {
           name="email"
           type="email"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
         <InputGroup
           id="pwd"
@@ -75,9 +83,15 @@ function Signup() {
           name="password"
           type="password"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" class="border-gradient border-gradient-purple submit-button">
+          Submit
+        </button>
       </Form>
       <Link
         style={{

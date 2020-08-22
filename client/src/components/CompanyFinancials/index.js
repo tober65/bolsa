@@ -12,6 +12,8 @@ function CompanyFinancials(props) {
     API.getCompanyFinancials(props.selectedSymbol.symbol)
       .then((response) => {
         setFinancials(response.data);
+        console.log('im calling');
+        props.onLoadedData();
       })
       .catch((err) => console.log("Error!", err));
   }, [props.selectedSymbol]);
