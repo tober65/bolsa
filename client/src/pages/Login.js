@@ -43,6 +43,7 @@ function Login() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={{backgroundColor: "#fff"}}
         />
         <InputGroup
           id="password"
@@ -51,6 +52,7 @@ function Login() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          style={{backgroundColor: "#fff"}}
         />
         <button type="submit">Submit</button>
       </Form>
