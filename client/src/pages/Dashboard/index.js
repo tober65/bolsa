@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Fade } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import SearchBox from "../../components/SearchBox";
 import NewsColumn from "../../components/NewsColumn";
@@ -19,11 +19,13 @@ function Dashboard() {
   const [symbols, setSymbols] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     API.getStockSymbols()
       .then((response) => {
         setSymbols(response.data);
+        setOpen(true);
       })
       .catch((err) => console.log("Error!", err));
   }, []);
@@ -31,57 +33,62 @@ function Dashboard() {
   useEffect(() => {
     API.getStockBySymbol(selectedSymbol.symbol)
       .then((response) => {
+        setOpen(true);
         setPrice(response.data);
       })
       .catch((err) => console.log("Error!", err));
   }, [selectedSymbol]);
 
   const handleChange = (event, value) => {
-    if(value) {
+    setOpen(false);
+    if (value) {
       setSelectedSymbol(value);
     } else {
-      setSelectedSymbol('');
+      setSelectedSymbol("");
     }
-    
   };
 
   if (Object.keys(selectedSymbol).length === 0) {
     return (
-      <Container>
-        <h1 className="db">Dashboard</h1>
-        <Row>
-          <Col lg={4}>
-            <SearchBox symbols={symbols} onChange={handleChange} />
-          </Col>
-          <Col lg={8}>
-            <NewsColumn />
-          </Col>
-        </Row>
-      </Container>
+      <Fade timeout={500} in={open}>
+        <Container>
+          <h1 className="db">Dashboard</h1>
+          <Row>
+            <Col lg={4}>
+              <SearchBox symbols={symbols} onChange={handleChange} />
+            </Col>
+            <Col lg={8}>
+              <NewsColumn />
+            </Col>
+          </Row>
+        </Container>
+      </Fade>
     );
   }
 
   return (
-    <Container>
-      <h1>Dashboard</h1>
-      <Row>
-        <Col  lg={4}>
-          <SearchBox symbols={symbols} onChange={handleChange} />
+    <Fade timeout={500} in={open}>
+      <Container>
+        <h1>Dashboard</h1>
+        <Row>
+          <Col lg={4}>
+            <SearchBox symbols={symbols} onChange={handleChange} />
+            <br></br>
+            <StockPrice selectedSymbol={selectedSymbol} price={price} />
+            <BuyShares selectedSymbol={selectedSymbol} price={price} />
+            <CompanyFinancials selectedSymbol={selectedSymbol} />
+          </Col>
           <br></br>
-          <StockPrice selectedSymbol={selectedSymbol} price={price} />
-          <BuyShares selectedSymbol={selectedSymbol} price={price} />
-          <CompanyFinancials selectedSymbol={selectedSymbol} />
-        </Col>
+          <Col lg={8} style={{ minHeight: 488 }}>
+            <StockChart selectedSymbol={selectedSymbol} />
+          </Col>
+        </Row>
         <br></br>
-        <Col  lg={8} style={{minHeight: 488}}>
-          <StockChart selectedSymbol={selectedSymbol}/>
-        </Col>
-      </Row>
-      <br></br>
-      <Row>
-        <CompanyNews selectedSymbol={selectedSymbol} />
-      </Row>
-    </Container>
+        <Row>
+          <CompanyNews selectedSymbol={selectedSymbol} />
+        </Row>
+      </Container>
+    </Fade>
   );
 }
 
