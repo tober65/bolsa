@@ -20,6 +20,9 @@ function Dashboard() {
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
   const [open, setOpen] = useState(false);
+  const [loadedData, setLoadedData] = useState({
+    stockPrice: false,
+  })
 
   useEffect(() => {
     API.getStockSymbols()
