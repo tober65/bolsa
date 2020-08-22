@@ -12,7 +12,6 @@ import UserStocks from "../UserComponents/UserStocks";
 import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import UserBalance from "../UserComponents/UserBalance";
-import InputBalance from "../InputBalance";
 import "./columns.css";
 import API from "../../utils/API"
 import { useAuth } from "../../utils/auth";
