@@ -20,13 +20,11 @@ function Dashboard() {
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
   const [open, setOpen] = useState(false);
-  const [loadedData, setLoadedData] = useState({
-    stockPrice: false,
-    companyNews: false,
-    userStocks: false,
-    userData: false,
-    companyFinancils: false,
-  });
+  const [stockPriceLoaded, setStockPriceLoaded] = useState(false);
+  const [companyNewsLoaded, setCompanyNewsLoaded] = useState(false);
+  const [userStocksLoaded, setUserStocksLoaded] = useState(false);
+  const [userDataLoaded, setUserDataLoaded] = useState(false);
+  const [companyFinancialsLoaded, setCompanyFinancialsLoaded] = useState(false);
 
   useEffect(() => {
     API.getStockSymbols()
@@ -41,34 +39,39 @@ function Dashboard() {
     API.getStockBySymbol(selectedSymbol.symbol)
       .then((response) => {
         setPrice(response.data);
-        setLoadedData({ ...loadedData, stockPrice: true });
+        setStockPriceLoaded(true);
       })
       .catch((err) => console.log("Error!", err));
   }, [selectedSymbol]);
 
   useEffect(() => {
-    //console.log('loadedData', loadedData);
-    //[stockPrice, companyNews, userStocks, userData,]
-    if (Object.keys(loadedData).every((key) => loadedData[key])) {
+    if (
+      companyFinancialsLoaded &&
+      stockPriceLoaded &&
+      userStocksLoaded &&
+      userDataLoaded &&
+      companyNewsLoaded
+    ) {
       setOpen(true);
     }
-  }, [loadedData]);
+  }, [
+    companyFinancialsLoaded,
+    stockPriceLoaded,
+    userStocksLoaded,
+    userDataLoaded,
+    companyNewsLoaded,
+  ]);
 
   const handleChange = (event, value) => {
+    setStockPriceLoaded(false);
+    setCompanyFinancialsLoaded(false);
+    setCompanyNewsLoaded(false);
     setOpen(false);
     if (value) {
       setSelectedSymbol(value);
     } else {
       setSelectedSymbol("");
     }
-  };
-
-  const handleLoadedData = (loadedDataKey) => {
-    console.log("before loaded data", loadedData);
-    let newObj = { ...loadedData, [loadedDataKey]: true };
-    console.log('test', newObj)
-    setLoadedData(newObj);
-    console.log("after loaded data", loadedData);
   };
 
   if (Object.keys(selectedSymbol).length === 0) {
@@ -90,38 +93,44 @@ function Dashboard() {
   }
 
   return (
-    <Fade timeout={500} in={open}>
-      <Container>
-        <h1>Dashboard</h1>
-        <Row>
-          <Col lg={4}>
-            <SearchBox symbols={symbols} onChange={handleChange} />
+    <div>
+      <Fade timeout={500} in={open}>
+        <Container>
+          <h1>Dashboard</h1>
+          <Row>
+            <Col lg={4}>
+              <SearchBox symbols={symbols} onChange={handleChange} />
+              <br></br>
+              <StockPrice selectedSymbol={selectedSymbol} price={price} />
+              <BuyShares
+                selectedSymbol={selectedSymbol}
+                price={price}
+                onLoadedData1={() => setUserDataLoaded(true)}
+                onLoadedData2={() => setUserStocksLoaded(true)}
+              />
+              <CompanyFinancials
+                selectedSymbol={selectedSymbol}
+                onLoadedData={() => setCompanyFinancialsLoaded(true)}
+              />
+            </Col>
             <br></br>
-            <StockPrice selectedSymbol={selectedSymbol} price={price} />
-            <BuyShares
-              selectedSymbol={selectedSymbol}
-              price={price}
-              onLoadedData={handleLoadedData}
-            />
-            <CompanyFinancials
-              selectedSymbol={selectedSymbol}
-              onLoadedData={handleLoadedData}
-            />
-          </Col>
+            <Col lg={8} style={{ minHeight: 488 }}>
+              <StockChart selectedSymbol={selectedSymbol} />
+            </Col>
+          </Row>
           <br></br>
-          <Col lg={8} style={{ minHeight: 488 }}>
-            <StockChart selectedSymbol={selectedSymbol} />
-          </Col>
-        </Row>
-        <br></br>
-        <Row>
-          <CompanyNews
-            selectedSymbol={selectedSymbol}
-            onLoadedData={handleLoadedData}
-          />
-        </Row>
-      </Container>
-    </Fade>
+          <Row>
+            <CompanyNews
+              selectedSymbol={selectedSymbol}
+              onLoadedData={() => setCompanyNewsLoaded(true)}
+            />
+          </Row>
+        </Container>
+      </Fade>
+      {!open && (
+        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      )}
+    </div>
   );
 }
 

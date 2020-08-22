@@ -12,7 +12,7 @@ function CompanyNews(props) {
     API.getNewsBySymbol(props.selectedSymbol.symbol)
       .then((response) => {
         setNews(response.data.slice(0, 10));
-        props.onLoadedData('companyNews');
+        props.onLoadedData();
       })
       .catch((err) => console.log("Error!", err));
   }, [props.selectedSymbol]);
