@@ -15,12 +15,14 @@ function BuyShares(props) {
     API.getUser(user.id)
       .then((response) => {
         setUserData(response.data);
+        props.onLoadedData('userData');
       })
       .catch((err) => console.log("Error!", err));
 
     API.getUserStocks(user.email)
       .then((response) => {
         setUserStocks(response.data);
+        props.onLoadedData('userStocks');
       })
       
       .catch((err) => console.log("Error!", err));

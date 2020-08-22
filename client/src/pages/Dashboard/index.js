@@ -22,7 +22,11 @@ function Dashboard() {
   const [open, setOpen] = useState(false);
   const [loadedData, setLoadedData] = useState({
     stockPrice: false,
-  })
+    companyNews: false,
+    userStocks: false,
+    userData: false,
+    companyFinancils: false,
+  });
 
   useEffect(() => {
     API.getStockSymbols()
@@ -36,11 +40,19 @@ function Dashboard() {
   useEffect(() => {
     API.getStockBySymbol(selectedSymbol.symbol)
       .then((response) => {
-        setOpen(true);
         setPrice(response.data);
+        setLoadedData({ ...loadedData, stockPrice: true });
       })
       .catch((err) => console.log("Error!", err));
   }, [selectedSymbol]);
+
+  useEffect(() => {
+    //console.log('loadedData', loadedData);
+    //[stockPrice, companyNews, userStocks, userData,]
+    if (Object.keys(loadedData).every((key) => loadedData[key])) {
+      setOpen(true);
+    }
+  }, [loadedData]);
 
   const handleChange = (event, value) => {
     setOpen(false);
@@ -49,6 +61,14 @@ function Dashboard() {
     } else {
       setSelectedSymbol("");
     }
+  };
+
+  const handleLoadedData = (loadedDataKey) => {
+    console.log("before loaded data", loadedData);
+    let newObj = { ...loadedData, [loadedDataKey]: true };
+    console.log('test', newObj)
+    setLoadedData(newObj);
+    console.log("after loaded data", loadedData);
   };
 
   if (Object.keys(selectedSymbol).length === 0) {
@@ -78,8 +98,15 @@ function Dashboard() {
             <SearchBox symbols={symbols} onChange={handleChange} />
             <br></br>
             <StockPrice selectedSymbol={selectedSymbol} price={price} />
-            <BuyShares selectedSymbol={selectedSymbol} price={price} />
-            <CompanyFinancials selectedSymbol={selectedSymbol} />
+            <BuyShares
+              selectedSymbol={selectedSymbol}
+              price={price}
+              onLoadedData={handleLoadedData}
+            />
+            <CompanyFinancials
+              selectedSymbol={selectedSymbol}
+              onLoadedData={handleLoadedData}
+            />
           </Col>
           <br></br>
           <Col lg={8} style={{ minHeight: 488 }}>
@@ -88,7 +115,10 @@ function Dashboard() {
         </Row>
         <br></br>
         <Row>
-          <CompanyNews selectedSymbol={selectedSymbol} />
+          <CompanyNews
+            selectedSymbol={selectedSymbol}
+            onLoadedData={handleLoadedData}
+          />
         </Row>
       </Container>
     </Fade>
