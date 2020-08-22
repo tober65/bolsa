@@ -1,4 +1,4 @@
-# Employee Management System
+# BOL$A
 
 ## Description 
 This is Project 3, a stock management system called BOL$A.
