@@ -81,11 +81,11 @@ function PortfolioColumns(props) {
                         <h3 className="mt-3 text-center">
                             <UserBalance Balance={userBalance} />
                         </h3>
-                        <div>
+                        <div className = "text-center">
                             <Form.Group>
                                 <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount of Funds" />
-                                <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
                             </Form.Group>
+                            <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
                         </div>
                     </Col>
                     <Col sm={6} md={7} lg={8} xl={7} className="column2">
