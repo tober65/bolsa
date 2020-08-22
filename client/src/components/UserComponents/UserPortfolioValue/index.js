@@ -14,7 +14,6 @@ function UserPortfolioValue(props) {
     }
 
     totalValue = +totalValue.toFixed(2)
-    console.log(stocksPrice);
     
     return(
         totalValue
