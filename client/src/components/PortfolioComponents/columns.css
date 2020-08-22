@@ -31,3 +31,9 @@
     color: white;
     font-size: 22px;
 }
+
+.form-control {
+    width: 50% !important;
+    text-align: center;
+    display: inline-block;
+}
