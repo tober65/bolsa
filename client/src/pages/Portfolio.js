@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PortfolioColumns from "../components/PortfolioComponents/PortfolioColumns";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
+import "./Dashboard/dashboard.css";
 
 function Portfolio() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,8 @@ function Portfolio() {
   }, [user]);
 
   return (
-    email.length > 0 ? <PortfolioColumns username={email}></PortfolioColumns> : <div>Loading...</div>
+    email.length > 0 ? <PortfolioColumns username={email}></PortfolioColumns> : 
+    <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   )
 
 };
