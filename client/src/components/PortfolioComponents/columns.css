@@ -23,7 +23,7 @@
 }
 
 .portfolioCont {
-    background-color: #606075;
+    background-color: rgba(96, 96, 117, 0.9);
     border-radius: 25px;
 }
 
@@ -41,3 +41,9 @@
 .table {
     table-layout: fixed;
 }
+
+.column1{
+    background-color: rgba(96, 96, 117, 0.9);
+    border-radius: 25px;
+}
+
