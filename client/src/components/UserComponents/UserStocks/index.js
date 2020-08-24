@@ -3,8 +3,8 @@ import { Col } from "react-bootstrap";
 import "./userstocks.css";
 
 function UserStocks({ stockName }) {
-    return (<Col className="test">
-        <p className="userStocks test">
+    return (<Col>
+        <p className="userStocks">
             {stockName}
             </p>
         </Col>

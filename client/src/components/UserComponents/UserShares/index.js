@@ -1,9 +1,10 @@
 import React from "react";
 import { Col } from "react-bootstrap";
+import "../../PortfolioComponents/columns.css";
 
 function UserShares({ stockShares }) {
-    return (<Col className="test">
-        <p className="userShares test">
+    return (<Col>
+        <p className="userShares">
             {stockShares}
             </p>
         </Col>
