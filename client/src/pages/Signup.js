@@ -3,6 +3,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import logo from '../bolsa_logo.svg';
 
 const signupStyles = {
   maxWidth: "20rem",
@@ -48,7 +49,7 @@ function Signup() {
 
   return (
     <div style={signupStyles} className="Signup">
-      <h1>Signup</h1>
+      <img src= {logo} alt="Bolsa logo"/>
       <Form onSubmit={handleFormSubmit}>
         <InputGroup
           id="username"
@@ -93,15 +94,7 @@ function Signup() {
           Submit
         </button>
       </Form>
-      <Link
-        style={{
-          marginTop: "1.5rem",
-          textAlign: "center",
-        }}
-        to="/login"
-      >
-        Go to Login
-      </Link>
+      <br></br>
     </div>
   );
 }

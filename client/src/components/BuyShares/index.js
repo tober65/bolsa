@@ -3,6 +3,7 @@ import { Card, Row } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import API from "../../utils/API";
 import swal from "sweetalert";
+import "./BuyShares.css";
 
 import "./BuyShares.css";
 
