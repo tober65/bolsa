@@ -4,10 +4,38 @@ const moment = require("moment");
 const axios = require("axios");
 
 router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
-  models.Stock.findOneAndUpdate(
-    { username: req.params.username, symbol: req.params.symbol },
-    { amount: req.params.amount },
-    { upsert: true },
+  if (req.params.amount > 0) {
+    models.Stock.findOneAndUpdate(
+      { username: req.params.username, symbol: req.params.symbol },
+      { amount: req.params.amount },
+      { upsert: true },
+      (err, docs) => {
+        if (err) {
+          res.status(400).send(err.message);
+        } else {
+          res.json(docs);
+        }
+      }
+    );
+  }
+  else {
+      models.Stock.findOneAndRemove(
+        { username: req.params.username, symbol: req.params.symbol },
+        (err, docs) => {
+            if (err) {
+              res.status(400).send(err.message);
+            } else {
+              res.json(docs);
+            }
+          }
+      );
+  }
+});
+
+router.post("/api/balance/:username/:amount", (req, res) => {
+  models.User.findOneAndUpdate(
+    { email: req.params.username },
+    { balance: req.params.amount },
     (err, docs) => {
       if (err) {
         res.status(400).send(err.message);
@@ -17,20 +45,6 @@ router.post("/api/userstocks/:username/:symbol/:amount", (req, res) => {
     }
   );
 });
-
-router.post("/api/balance/:username/:amount", (req, res) => {
-    models.User.findOneAndUpdate(
-      { email: req.params.username },
-      { balance: req.params.amount },
-      (err, docs) => {
-        if (err) {
-          res.status(400).send(err.message);
-        } else {
-          res.json(docs);
-        }
-      }
-    );
-  });
 
 router.get("/api/userstocks/:username", (req, res) => {
   models.Stock.find({ username: req.params.username }, (err, docs) => {
@@ -122,26 +136,26 @@ router.get("/api/stocksnews/:symbol", (req, res) => {
 });
 
 router.get("/api/candles/:symbol", (req, res) => {
-    const msPerYear = 31530000000;
-    const toTime = Math.floor(Date.now() / 1000);
-    const fromTime = Math.floor((Date.now() - msPerYear) / 1000);
-  
-    const searchUrl =
-      "https://finnhub.io/api/v1/stock/candle?resolution=1&symbol=" +
-      req.params.symbol.toUpperCase() +
-      "&token=" +
-      process.env.FINN_API_KEY +
-      "&from=" +
-      fromTime +
-      "&to=" +
-      toTime;
+  const msPerYear = 31530000000;
+  const toTime = Math.floor(Date.now() / 1000);
+  const fromTime = Math.floor((Date.now() - msPerYear) / 1000);
 
-      console.log(searchUrl);
-  
-    axios.get(searchUrl).then((response) => {
-      res.json(response.data);
-    });
+  const searchUrl =
+    "https://finnhub.io/api/v1/stock/candle?resolution=1&symbol=" +
+    req.params.symbol.toUpperCase() +
+    "&token=" +
+    process.env.FINN_API_KEY +
+    "&from=" +
+    fromTime +
+    "&to=" +
+    toTime;
+
+  console.log(searchUrl);
+
+  axios.get(searchUrl).then((response) => {
+    res.json(response.data);
   });
+});
 
 router.get("/api/news/", (req, res) => {
   const searchUrl =
