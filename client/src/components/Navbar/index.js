@@ -44,7 +44,7 @@ function Navbar() {
 function BrandLink(props) {
   return (
     <NavLink className="nav-item brand" exact {...props}>
-      <img src= {logo} alt="money logo"/>
+     <img src= {logo} alt="money logo" className="navbar-logo"/>
     </NavLink>
   );
 }
