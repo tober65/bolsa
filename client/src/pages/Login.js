@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import swal from "sweetalert";
+import logo from '../bolsa_logo.svg';
 
 const loginStyle = {
   display: "flex",
@@ -28,13 +30,18 @@ function Login() {
       // navigate to the profile page
       .then(() => history.push("/"))
       .catch((err) => {
-        alert(err.response.data.message);
+        swal({
+          title: "Login Unsuccessful",
+          text: err.response.data.message,
+          icon: "warning",
+          button: "OK",
+        });
       });
   };
 
   return (
     <div style={loginStyle}>
-      <h1>Login</h1>
+      <img src= {logo} alt="Bolsa logo"/>
       <Form onSubmit={handleFormSubmit}>
         <InputGroup
           id="email"
@@ -43,7 +50,9 @@ function Login() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{backgroundColor: "#fff"}}
+          style={{ backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white", }}
         />
         <InputGroup
           id="password"
@@ -52,19 +61,15 @@ function Login() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{backgroundColor: "#fff"}}
+          style={{backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white", }}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" class="border-gradient border-gradient-purple submit-button">
+          Submit
+        </button>
       </Form>
-      <Link
-        style={{
-          marginTop: "1.5rem",
-          textAlign: "center",
-        }}
-        to="/signup"
-      >
-        Go to Signup
-      </Link>
+    <br></br>
     </div>
   );
 }

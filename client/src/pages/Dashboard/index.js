@@ -20,6 +20,11 @@ function Dashboard() {
   const [selectedSymbol, setSelectedSymbol] = useState({});
   const [price, setPrice] = useState({});
   const [open, setOpen] = useState(false);
+  const [stockPriceLoaded, setStockPriceLoaded] = useState(false);
+  const [companyNewsLoaded, setCompanyNewsLoaded] = useState(false);
+  const [userStocksLoaded, setUserStocksLoaded] = useState(false);
+  const [userDataLoaded, setUserDataLoaded] = useState(false);
+  const [companyFinancialsLoaded, setCompanyFinancialsLoaded] = useState(false);
 
   useEffect(() => {
     API.getStockSymbols()
@@ -33,13 +38,34 @@ function Dashboard() {
   useEffect(() => {
     API.getStockBySymbol(selectedSymbol.symbol)
       .then((response) => {
-        setOpen(true);
         setPrice(response.data);
+        setStockPriceLoaded(true);
       })
       .catch((err) => console.log("Error!", err));
   }, [selectedSymbol]);
 
+  useEffect(() => {
+    if (
+      companyFinancialsLoaded &&
+      stockPriceLoaded &&
+      userStocksLoaded &&
+      userDataLoaded &&
+      companyNewsLoaded
+    ) {
+      setOpen(true);
+    }
+  }, [
+    companyFinancialsLoaded,
+    stockPriceLoaded,
+    userStocksLoaded,
+    userDataLoaded,
+    companyNewsLoaded,
+  ]);
+
   const handleChange = (event, value) => {
+    setStockPriceLoaded(false);
+    setCompanyFinancialsLoaded(false);
+    setCompanyNewsLoaded(false);
     setOpen(false);
     if (value) {
       setSelectedSymbol(value);
@@ -67,28 +93,44 @@ function Dashboard() {
   }
 
   return (
-    <Fade timeout={500} in={open}>
-      <Container>
-        <h1>Dashboard</h1>
-        <Row>
-          <Col lg={4}>
-            <SearchBox symbols={symbols} onChange={handleChange} />
+    <div>
+      <Fade timeout={500} in={open}>
+        <Container>
+          <h1>Dashboard</h1>
+          <Row>
+            <Col lg={4}>
+              <SearchBox symbols={symbols} onChange={handleChange} />
+              <br></br>
+              <StockPrice selectedSymbol={selectedSymbol} price={price} />
+              <BuyShares
+                selectedSymbol={selectedSymbol}
+                price={price}
+                onLoadedData1={() => setUserDataLoaded(true)}
+                onLoadedData2={() => setUserStocksLoaded(true)}
+              />
+              <CompanyFinancials
+                selectedSymbol={selectedSymbol}
+                onLoadedData={() => setCompanyFinancialsLoaded(true)}
+              />
+            </Col>
             <br></br>
-            <StockPrice selectedSymbol={selectedSymbol} price={price} />
-            <BuyShares selectedSymbol={selectedSymbol} price={price} />
-            <CompanyFinancials selectedSymbol={selectedSymbol} />
-          </Col>
+            <Col lg={8} style={{ minHeight: 488 }}>
+              <StockChart selectedSymbol={selectedSymbol} />
+            </Col>
+          </Row>
           <br></br>
-          <Col lg={8} style={{ minHeight: 488 }}>
-            <StockChart selectedSymbol={selectedSymbol} />
-          </Col>
-        </Row>
-        <br></br>
-        <Row>
-          <CompanyNews selectedSymbol={selectedSymbol} />
-        </Row>
-      </Container>
-    </Fade>
+          <Row>
+            <CompanyNews
+              selectedSymbol={selectedSymbol}
+              onLoadedData={() => setCompanyNewsLoaded(true)}
+            />
+          </Row>
+        </Container>
+      </Fade>
+      {!open && (
+        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      )}
+    </div>
   );
 }
 

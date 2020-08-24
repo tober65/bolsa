@@ -3,6 +3,8 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import swal from "sweetalert";
+import logo from '../bolsa_logo.svg';
 
 const signupStyles = {
   maxWidth: "20rem",
@@ -35,7 +37,15 @@ function Signup() {
         // send them to the login page
         history.replace("/login");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        console.log({err});
+        swal({
+          title: "Signup Unsuccessful",
+          text: err.message,
+          icon: "warning",
+          button: "OK",
+        });
+      });
   };
 
   const handleChange = (event) => {
@@ -48,7 +58,7 @@ function Signup() {
 
   return (
     <div style={signupStyles} className="Signup">
-      <h1>Signup</h1>
+      <img src= {logo} alt="Bolsa logo"/>
       <Form onSubmit={handleFormSubmit}>
         <InputGroup
           id="username"
@@ -57,7 +67,11 @@ function Signup() {
           name="username"
           type="text"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
         <InputGroup
           id="email"
@@ -66,7 +80,11 @@ function Signup() {
           name="email"
           type="email"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
         <InputGroup
           id="pwd"
@@ -75,19 +93,17 @@ function Signup() {
           name="password"
           type="password"
           onChange={handleChange}
-          style={{backgroundColor: "#fff"}}
+          style={{
+            backgroundColor: "#16162a",
+            border: "2px solid #6565C2",
+            color: "white",
+          }}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" class="border-gradient border-gradient-purple submit-button">
+          Submit
+        </button>
       </Form>
-      <Link
-        style={{
-          marginTop: "1.5rem",
-          textAlign: "center",
-        }}
-        to="/login"
-      >
-        Go to Login
-      </Link>
+      <br></br>
     </div>
   );
 }

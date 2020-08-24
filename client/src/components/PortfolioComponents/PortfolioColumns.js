@@ -7,7 +7,7 @@ import UserShares from "../UserComponents/UserShares";
 import UserSharesPrice from "../UserComponents/UserSharesPrice";
 import UserBalance from "../UserComponents/UserBalance";
 import "./columns.css";
-import API from "../../utils/API"
+import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
 
 function PortfolioColumns(props) {
@@ -15,8 +15,8 @@ function PortfolioColumns(props) {
     let [price, setPrice] = useState({});
     let [userBalance, setUserBalance] = useState("");
     let [formObject, setFormObject] = useState({
-        fundsForm: ""
-    })
+        fundsForm: "",
+    });
 
     const { user } = useAuth();
     useEffect(() => {
@@ -24,40 +24,49 @@ function PortfolioColumns(props) {
             setUserBalance(res.data.balance);
         });
 
-        API.getUserStocks(props.username).then((results) => {
-            setStocks(results.data);
-            let priceObj;
-            for (let i = 0; i < results.data.length; i++) {
-                API.getStockBySymbol(results.data[i].symbol).then((response) => {
-                    priceObj = { ...priceObj, [results.data[i].symbol]: response.data.c }
-                    setPrice(priceObj);
-                }).catch((error) => { console.log(error) })
-            };
-        }).catch((error) => console.log(error));
+        API.getUserStocks(props.username)
+            .then((results) => {
+                setStocks(results.data);
+                let priceObj;
+                for (let i = 0; i < results.data.length; i++) {
+                    API.getStockBySymbol(results.data[i].symbol)
+                        .then((response) => {
+                            priceObj = {
+                                ...priceObj,
+                                [results.data[i].symbol]: response.data.c,
+                            };
+                            setPrice(priceObj);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            })
+            .catch((error) => console.log(error));
     }, []);
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormObject({ ...formObject, [name]: value })
+        setFormObject({ ...formObject, [name]: value });
     }
 
     function handleFormSubmit(event) {
         event.preventDefault();
         if (formObject.fundsForm) {
-            let funds = formObject.fundsForm
-            let total = parseInt(funds) + parseInt(userBalance);
-            API.setBalance(
-                user.email,
-                total
-            )
-                .then(() => setFormObject({
-                    fundsForm: ""
-                }))
-                .then(() => API.getUser(user.id).then((res) => {
-                    setUserBalance(res.data.balance);
-                })
+            let funds = +formObject.fundsForm;
+            let total = +(funds.toFixed(2)) + +(userBalance.toFixed(2));
+            API.setBalance(user.email, total)
+                .then(() =>
+                    setFormObject({
+                        fundsForm: "",
+                    })
                 )
-        };
+                .then(() =>
+                    API.getUser(user.id).then((res) => {
+                        setUserBalance(res.data.balance);
+                    })
+                );
+        }
     }
 
     return (
@@ -87,32 +96,32 @@ function PortfolioColumns(props) {
                         <div className="mt-4 text-center">
                             <UserChart stocks={stocks} />
                         </div>
-                            <Container className ="mt-3 portfolioCont">
-                                    <Row>
-                                        <Col>
-                                            <Table className="mt-4">
-                                                <thead>
-                                                    <tr className="trPortfolio">
-                                                        <th>Stock Name</th>
-                                                        <th># of Shares</th>
-                                                        <th>Price Per Share</th>
+                        <Container className="mt-3 portfolioCont">
+                            <Row>
+                                <Col>
+                                    <Table className="mt-4">
+                                        <thead>
+                                            <tr className="trPortfolio">
+                                                <th>Stock Name</th>
+                                                <th># of Shares</th>
+                                                <th>Price Per Share</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {stocks.map((item) => {
+                                                return (
+                                                    <tr>
+                                                        <td><UserStocks stockName={item.symbol} /></td>
+                                                        <td><UserShares stockShares={item.amount} /></td>
+                                                        <td><UserSharesPrice price={price[item.symbol]} /></td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {stocks.map((item) => {
-                                                        return (
-                                                            <tr>
-                                                                <td><UserStocks stockName={item.symbol} /></td>
-                                                                <td><UserShares stockShares={item.amount} /></td>
-                                                                <td><UserSharesPrice price={price[item.symbol]} /></td>
-                                                            </tr>
-                                                        );
-                                                    })}
-                                                </tbody>
-                                            </Table>
-                                        </Col>
-                                    </Row>
-                            </Container>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </Table>
+                                </Col>
+                            </Row>
+                        </Container>
                     </Col>
                 </Row>
             </Container>

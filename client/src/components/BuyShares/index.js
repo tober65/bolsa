@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
 import { useAuth } from "../../utils/auth";
 import API from "../../utils/API";
 import swal from "sweetalert";
+import "./BuyShares.css";
+
+import "./BuyShares.css";
 
 function BuyShares(props) {
   const [buyAmount, setBuyAmount] = useState(0);
@@ -15,14 +18,15 @@ function BuyShares(props) {
     API.getUser(user.id)
       .then((response) => {
         setUserData(response.data);
+        props.onLoadedData1();
       })
       .catch((err) => console.log("Error!", err));
 
     API.getUserStocks(user.email)
       .then((response) => {
         setUserStocks(response.data);
+        props.onLoadedData2();
       })
-      
       .catch((err) => console.log("Error!", err));
   }, []);
 
@@ -129,42 +133,62 @@ function BuyShares(props) {
     if (filteredStocks.length) {
       return (
         <div>
-          <div>SELL SHARES</div>
-          <input
-            type="number"
-            value={sellAmount}
-            onChange={(e) => setSellAmount(e.target.value)}
-          ></input>
-          <div>{+(props.price.c * +sellAmount).toFixed(2)} US$</div>
-          <div>
+          <Row className="justify-content-center">
+            <div>SELL SHARES</div>
+            <span className="mx-2">-</span>
+            <div>{+(props.price.c * +sellAmount).toFixed(2)} US$</div>
+          </Row>
+          <Row className="align-items-center justify-content-center">
+            <input
+              className="shares mx-1"
+              type="number"
+              value={sellAmount}
+              onChange={(e) => setSellAmount(e.target.value)}
+            ></input>
             <button
-              disabled={+sellAmount > filteredStocks[0].amount || +sellAmount <= 0}
+              className="share-button mx-1"
+              disabled={
+                +sellAmount > filteredStocks[0].amount || +sellAmount <= 0
+              }
               onClick={sellStocks}
             >
               SELL
             </button>
-          </div>
+          </Row>
         </div>
       );
     }
   };
   return (
     <Card.Body className="my-2">
-      <div>Trade</div>
-  <div>Balance: {userData.balance}</div>
-      {getUserStocksView()}
-      <div>BUY SHARES</div>
-      <input
-        type="number"
-        value={buyAmount}
-        onChange={(e) => setBuyAmount(e.target.value)}
-      ></input>
-      <div>{+(props.price.c * buyAmount).toFixed(2)} US$</div>
-      <div>
-        <button disabled={+buyAmount <= 0 || (+buyAmount * props.price.c) > userData.balance} onClick={buyStocks}>
+      <div className="trade">Trade</div>
+      <Row className="space-evenly">
+        <div className="balance">Balance: {userData.balance}</div>
+        {getUserStocksView()}
+      </Row>
+
+      <Row className="justify-content-center">
+        <div>BUY SHARES</div>
+        <span className="mx-2">-</span>
+        <div>{+(props.price.c * buyAmount).toFixed(2)} US$</div>
+      </Row>
+      <Row className="align-items-center justify-content-center">
+        <input
+          className="shares mx-1"
+          type="number"
+          value={buyAmount}
+          onChange={(e) => setBuyAmount(e.target.value)}
+        ></input>
+        <button
+          className="share-button mx-1"
+          disabled={
+            +buyAmount <= 0 || +buyAmount * props.price.c > userData.balance
+          }
+          onClick={buyStocks}
+        >
           BUY
         </button>
-      </div>
+      </Row>
       {getSellView()}
     </Card.Body>
   );
