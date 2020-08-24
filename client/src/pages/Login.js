@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import logo from '../bolsa_logo.svg';
 
 const loginStyle = {
   display: "flex",
@@ -34,7 +35,7 @@ function Login() {
 
   return (
     <div style={loginStyle}>
-      <h1>Login</h1>
+      <img src= {logo} alt="Bolsa logo"/>
       <Form onSubmit={handleFormSubmit}>
         <InputGroup
           id="email"
@@ -62,15 +63,7 @@ function Login() {
           Submit
         </button>
       </Form>
-      <Link
-        style={{
-          marginTop: "1.5rem",
-          textAlign: "center",
-        }}
-        to="/signup"
-      >
-        Go to Signup
-      </Link>
+    <br></br>
     </div>
   );
 }
