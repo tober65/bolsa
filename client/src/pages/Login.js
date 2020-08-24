@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import swal from "sweetalert";
 import logo from '../bolsa_logo.svg';
 
 const loginStyle = {
@@ -29,7 +30,12 @@ function Login() {
       // navigate to the profile page
       .then(() => history.push("/"))
       .catch((err) => {
-        alert(err.response.data.message);
+        swal({
+          title: "Login Unsuccessful",
+          text: err.response.data.message,
+          icon: "warning",
+          button: "OK",
+        });
       });
   };
 

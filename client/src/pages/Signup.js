@@ -3,6 +3,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
 import { Form, InputGroup } from "../components/LoginForm";
+import swal from "sweetalert";
 import logo from '../bolsa_logo.svg';
 
 const signupStyles = {
@@ -36,7 +37,15 @@ function Signup() {
         // send them to the login page
         history.replace("/login");
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        console.log({err});
+        swal({
+          title: "Signup Unsuccessful",
+          text: err.message,
+          icon: "warning",
+          button: "OK",
+        });
+      });
   };
 
   const handleChange = (event) => {
