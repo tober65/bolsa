@@ -28,5 +28,10 @@ color: #FFFFFF;
 
 .companynews {
   width: 100%;
+  
+}
+.news-title{
+  color:#9FFF2A;
+  font-weight:bold;
 }
 

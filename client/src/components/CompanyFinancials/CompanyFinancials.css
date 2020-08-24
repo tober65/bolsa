@@ -1,24 +1,25 @@
 .financials {
     font-size: 16px;
-    padding: 5px 0;
 }
 
 .companyfinancials {
     background-color: rgba(96, 96, 117, 0.9);
     border-radius: 25px;
     color: white;
+    padding: 20px;
 }
 
 .companyfinancials thead {
-    text-align: center;
-    font-family: "Alternate Gothic No1", sans-serif;
+  margin-left: 20px;
+font-family: "Alternate Gothic No1", sans-serif;
 font-size: 18px;
 font-style: normal;
 font-weight: 400;
 letter-spacing: normal;
 line-height: 40.5px;
 text-transform: uppercase;
-color: #FFFFFF;
+color: #9FFF2A;
+font-weight:bold;
 }
 
 .companyfinancials td {
