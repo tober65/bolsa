@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
+import logo from './moneylogo.svg';
 import "./Navbar.css";
 
 // NavLink adds "active" to className when path matches.
@@ -43,7 +44,7 @@ function Navbar() {
 function BrandLink(props) {
   return (
     <NavLink className="nav-item brand" exact {...props}>
-      BOL$A
+     <img src= {logo} alt="money logo" className="navbar-logo"/>
     </NavLink>
   );
 }
