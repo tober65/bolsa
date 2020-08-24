@@ -1,0 +1,30 @@
+.trade {
+  font-weight: bold;
+}
+.balance {
+  display: flex;
+}
+.buy-view {
+  display: flex;
+}
+
+.sell-view {
+  display: flex;
+}
+
+.shares {
+  height: 30px;
+  width: 50%;
+  background-color:#16162a;
+  border: 2px solid #6565C2;
+  border-radius: 5px;
+  color:white;
+}
+
+.share-button {
+  font-size: 0.75em;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
