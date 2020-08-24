@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
-import { Card } from "react-bootstrap";
-import { Container } from "react-bootstrap";
-import { Row } from "react-bootstrap";
-import { Table } from "react-bootstrap";
-import { Form } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Col, Container, Row, Table, Form, Button } from "react-bootstrap";
 import UserChart from "../UserComponents/UserChart";
 import UserPortfolioValue from "../UserComponents/UserPortfolioValue";
 import UserStocks from "../UserComponents/UserStocks";
@@ -71,7 +65,7 @@ function PortfolioColumns(props) {
             <Container>
                 <h2 className="mt-3 text-center">Your Portfolio</h2>
                 <Row className="mt-4">
-                    <Col sm={6} md={5} lg={4} xl={5} className="column1">
+                    <Col lg={4} xl={5} className="column1">
                         <h3 className="mt-3 text-center">
                             $<UserPortfolioValue price={price} stocks={stocks} /> Invested
                         </h3>
@@ -81,46 +75,44 @@ function PortfolioColumns(props) {
                         <h3 className="mt-3 text-center">
                             <UserBalance Balance={userBalance} />
                         </h3>
-                        <div className = "text-center">
+                        <div className="text-center">
                             <Form.Group>
-                                <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount of Funds" />
+                                <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount" />
                             </Form.Group>
                             <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
                         </div>
                     </Col>
-                    <Col sm={6} md={7} lg={8} xl={7} className="column2">
+                    <Col lg={8} xl={7} className="column2">
                         <h3 className="mt-3 text-center">Portfolio Distribution</h3>
                         <div className="mt-4 text-center">
                             <UserChart stocks={stocks} />
                         </div>
-                        <Card className="mt-3 portfolioCont">
-                            <Container>
-                                <Card.Body>
+                            <Container className ="mt-3 portfolioCont">
                                     <Row>
-                                        <Table>
-                                            <thead>
-                                                <tr className="trPortfolio">
-                                                    <th>Stock Name</th>
-                                                    <th># of Shares</th>
-                                                    <th>Price Per Share</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {stocks.map((item) => {
-                                                    return (
-                                                        <tr>
-                                                            <td><UserStocks stockName={item.symbol} /></td>
-                                                            <td><UserShares stockShares={item.amount} /></td>
-                                                            <td><UserSharesPrice price={price[item.symbol]} /></td>
-                                                        </tr>
-                                                    );
-                                                })}
-                                            </tbody>
-                                        </Table>
+                                        <Col>
+                                            <Table className="mt-4">
+                                                <thead>
+                                                    <tr className="trPortfolio">
+                                                        <th>Stock Name</th>
+                                                        <th># of Shares</th>
+                                                        <th>Price Per Share</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {stocks.map((item) => {
+                                                        return (
+                                                            <tr>
+                                                                <td><UserStocks stockName={item.symbol} /></td>
+                                                                <td><UserShares stockShares={item.amount} /></td>
+                                                                <td><UserSharesPrice price={price[item.symbol]} /></td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                </tbody>
+                                            </Table>
+                                        </Col>
                                     </Row>
-                                </Card.Body>
                             </Container>
-                        </Card>
                     </Col>
                 </Row>
             </Container>
