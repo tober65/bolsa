@@ -1,6 +1,5 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
 
 
 //Get the labels for the chart by mapping through the user's stocks and getting the symbols 
@@ -38,9 +37,9 @@ function UserChart(props) {
   };
 
 
-  return (<MDBContainer>
+  return (<div style={{maxWidth: 600, margin: '0 auto'}}>
     <Doughnut className="mt-3" data={tableData.dataDoughnut} options={{ responsive: true, maintainAspectRatio: true, }} />
-  </MDBContainer>)
+  </div>)
 }
 
 

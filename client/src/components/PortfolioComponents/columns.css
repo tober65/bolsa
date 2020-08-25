@@ -47,3 +47,15 @@
     border-radius: 25px;
 }
 
+.funds{
+height: 30px;
+  width: 50%;
+  background-color:#16162a;
+  border: 1px solid #16162a;
+  border-radius: 5px;
+  color:white;
+}
+.button{
+     font-size: 1em;
+  color: #C9FF00;
+}

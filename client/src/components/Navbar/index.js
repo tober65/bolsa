@@ -18,7 +18,7 @@ function Navbar() {
     );
     links.push(
       <NavLink key="profile" className="nav-item" to="/portfolio">
-        Profile
+        Portfolio
       </NavLink>
     );
     links.push(
