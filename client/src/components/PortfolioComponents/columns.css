@@ -48,14 +48,16 @@
 }
 
 .funds{
-height: 30px;
+height: 50px;
   width: 50%;
   background-color:#16162a;
-  border: 1px solid #16162a;
+  border: 1px solid #C9FF00;
   border-radius: 5px;
   color:white;
+  
 }
 .button{
      font-size: 1em;
   color: #C9FF00;
 }
+

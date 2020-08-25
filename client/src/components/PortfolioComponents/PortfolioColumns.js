@@ -72,7 +72,7 @@ function PortfolioColumns(props) {
     return (
         <div>
             <Container>
-                <h2 className="mt-3 text-center">Your Portfolio</h2>
+                <h2 className="mt-3 ">Your Portfolio</h2>
                 <Row>
                     <Col>
                         <h3 className="mt-3 text-center">Portfolio Distribution</h3>
@@ -80,7 +80,7 @@ function PortfolioColumns(props) {
                             <UserChart stocks={stocks} />
                         </div>
                         <h3 className="mt-5 text-center">
-                                $<UserPortfolioValue price={price} stocks={stocks} /> Invested
+                                $<UserPortfolioValue  price={price} stocks={stocks} /> Invested
                         </h3>
                     </Col>
                 </Row>
@@ -90,7 +90,7 @@ function PortfolioColumns(props) {
                             <h2 className="mt-3 text-center">
                                 Total Balance
                         </h2>
-                            <h3 className="mt-5 text-center">
+                            <h3 className="mt-5 mb-3 text-center">
                                 <UserBalance Balance={userBalance} />
                             </h3>
                             <div className="text-center mb-4">
@@ -108,9 +108,9 @@ function PortfolioColumns(props) {
                                     <Table className="mt-4">
                                         <thead>
                                             <tr className="trPortfolio">
-                                                <th>Stock Name</th>
-                                                <th># of Shares</th>
-                                                <th>Price Per Share</th>
+                                                <th>Stock</th>
+                                                <th>Shares</th>
+                                                <th>Price </th>
                                             </tr>
                                         </thead>
                                         <tbody>
