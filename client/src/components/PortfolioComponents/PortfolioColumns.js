@@ -73,29 +73,35 @@ function PortfolioColumns(props) {
         <div>
             <Container>
                 <h2 className="mt-3 text-center">Your Portfolio</h2>
-                <Row className="mt-4">
-                    <Col lg={4} xl={5} className="column1">
-                        <h3 className="mt-3 text-center">
-                            $<UserPortfolioValue price={price} stocks={stocks} /> Invested
-                        </h3>
-                        <h2 className="mt-3 text-center">
-                            Total Balance
-                        </h2>
-                        <h3 className="mt-3 text-center">
-                            <UserBalance Balance={userBalance} />
-                        </h3>
-                        <div className="text-center">
-                            <Form.Group>
-                                <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount" />
-                            </Form.Group>
-                            <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
-                        </div>
-                    </Col>
-                    <Col lg={8} xl={7} className="column2">
+                <Row>
+                    <Col>
                         <h3 className="mt-3 text-center">Portfolio Distribution</h3>
                         <div className="mt-4 text-center">
                             <UserChart stocks={stocks} />
                         </div>
+                    </Col>
+                </Row>
+                <Row className="mt-4">
+                    <Col lg={6} xl={6} className="column1 mt-3">
+                        <div className ="mt-5">
+                            <h3 className="mt-3 text-center">
+                                $<UserPortfolioValue price={price} stocks={stocks} /> Invested
+                        </h3>
+                            <h2 className="mt-3 text-center">
+                                Total Balance
+                        </h2>
+                            <h3 className="mt-3 text-center">
+                                <UserBalance Balance={userBalance} />
+                            </h3>
+                            <div className="text-center">
+                                <Form.Group>
+                                    <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount" />
+                                </Form.Group>
+                                <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col lg={6} xl={6} className="column2">
                         <Container className="mt-3 portfolioCont">
                             <Row>
                                 <Col>
