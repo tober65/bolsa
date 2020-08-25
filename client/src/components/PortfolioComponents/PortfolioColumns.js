@@ -72,32 +72,32 @@ function PortfolioColumns(props) {
     return (
         <div>
             <Container>
-                <h2 className="mt-3 text-center">Your Portfolio</h2>
+                <h2 className="mt-3 ">Your Portfolio</h2>
                 <Row>
                     <Col>
                         <h3 className="mt-3 text-center">Portfolio Distribution</h3>
                         <div className="mt-4 text-center">
                             <UserChart stocks={stocks} />
                         </div>
+                        <h3 className="mt-5 text-center">
+                                $<UserPortfolioValue  price={price} stocks={stocks} /> Invested
+                        </h3>
                     </Col>
                 </Row>
                 <Row className="mt-4">
                     <Col lg={6} xl={6} className="column1 mt-3">
                         <div className ="mt-5">
-                            <h3 className="mt-3 text-center">
-                                $<UserPortfolioValue price={price} stocks={stocks} /> Invested
-                        </h3>
                             <h2 className="mt-3 text-center">
                                 Total Balance
                         </h2>
-                            <h3 className="mt-3 text-center">
+                            <h3 className="mt-5 mb-3 text-center">
                                 <UserBalance Balance={userBalance} />
                             </h3>
-                            <div className="text-center">
+                            <div className="text-center mb-4">
                                 <Form.Group>
-                                    <Form.Control type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount" />
+                                    <Form.Control className="funds" type="text" id="fundsForm" value={formObject.fundsAmount} name="fundsForm" onChange={handleInputChange} placeholder="Enter Amount" />
                                 </Form.Group>
-                                <Button variant="secondary" className="button" onClick={handleFormSubmit} >Add Funds!</Button>
+                                <button className="button" onClick={handleFormSubmit} >Add Funds!</button>
                             </div>
                         </div>
                     </Col>
@@ -108,9 +108,9 @@ function PortfolioColumns(props) {
                                     <Table className="mt-4">
                                         <thead>
                                             <tr className="trPortfolio">
-                                                <th>Stock Name</th>
-                                                <th># of Shares</th>
-                                                <th>Price Per Share</th>
+                                                <th>Stock</th>
+                                                <th>Shares</th>
+                                                <th>Price </th>
                                             </tr>
                                         </thead>
                                         <tbody>
